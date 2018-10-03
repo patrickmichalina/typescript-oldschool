@@ -1,0 +1,33 @@
+{
+  "name": "flosports-web",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "postinstall": "node_modules/.bin/tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "node_modules/.bin/tsc",
+    "compile.watch": "node_modules/.bin/tsc -w",
+    "styles": "mkdir -p .dist/_public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/_public/css",
+    "styles.watch": "mkdir -p .dist/_public/css && node_modules/.bin/stylus -w src/**/*.styl -o .dist/_public/css",
+    "lint": "tslint --project tsconfig.json --config tslint.json"
+  },
+  "author": "",
+  "engines": {
+    "node": "= 10.11.0",
+    "npm": "= 6.4.1"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "pug": "^2.0.3",
+    "typescript": "^3.1.1",
+    "typescript-monads": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/node": "^10.11.4",
+    "@types/pug": "^2.0.4",
+    "stylus": "^0.54.5",
+    "tslint": "^5.11.0",
+    "tslint-immutable": "^4.7.0"
+  }
+}
