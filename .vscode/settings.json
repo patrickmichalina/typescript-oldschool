@@ -2,7 +2,10 @@
     "editor.tabSize": 2,
     "git.ignoreLimitWarning": true,
     "typescript.tsdk": "node_modules/typescript/lib",
-    "mochaExplorer.files": "src/**/*.spec.ts",
-    "mochaExplorer.optsFile": "mocha.opts",
-    "testExplorer.codeLens": true
+    // "mochaExplorer.optsFile": "mocha.opts",
+    // "mocha.": "src/**/*.spec.ts",
+    "mocha.files.glob": "src/**/*.spec.ts",
+    "mocha.requires": [
+        "ts-node/register"
+    ]
 }
