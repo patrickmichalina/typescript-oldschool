@@ -15,20 +15,19 @@
   "scripts": {
     "test": "nyc mocha --opts ./mocha.opts",
     "test.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
-    "copy.views": "copyfiles \"src/**/*.{pug,pug}\" .dist -V",
-    "copy.views.watch": "nodemon -w src/**/*.{pug,pug} -x copyfiles \"src/**/*.{pug,pug}\" .dist",
-    "copy.scripts": "copyfiles -f \"{!(_public),.dist/}**/*.{script,script.js}.{js,js,map}\" .dist/_public/scripts",
-    "compile": "node_modules/.bin/tsc",
-    "start.dev": "tsc && concurrently \"npm run copy.scripts\" \"npm run copy.views.watch\" \"tsc\" \"npm run styles.watch\" \"nodemon --delay 15ms -w .dist --ignore .dist/_public .dist/server.js\"",
+    "copy.views": "cpx \"src/**/*.{pug,pug}\" .dist -v",
+    "copy.views.watch": "cpx \"src/**/*.{pug,pug}\" .dist -w -v",
+    "cp": "copyfiles -f \"{!(_public),.dist/}**/*.{script,script.js}.{js,js,map}\" .dist/_public/scripts",
+    "copy.scripts": "nodemon -e {js} --ignore .dist/_public -w .dist -x npm run cp",
+    "tsc": "tsc",
+    "start.dev": "tsc && ts-node start-dev",
     "styles": "mkdir -p .dist/_public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/_public/css",
-    "styles.watch": "mkdir -p .dist/_public/css && node_modules/.bin/stylus -w src/**/*.styl -o .dist/_public/css",
     "lint": "tslint --project tsconfig.json --config tslint.json"
   },
   "dependencies": {
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "pug": "^2.0.3",
-    "typescript": "^3.1.1",
     "typescript-monads": "^3.3.0"
   },
   "devDependencies": {
@@ -49,7 +48,8 @@
     "stylus": "^0.54.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
-    "tslint-immutable": "^4.7.0"
+    "tslint-immutable": "^4.7.0",
+    "typescript": "^3.1.1"
   },
   "nyc": {
     "include": [
