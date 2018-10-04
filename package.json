@@ -15,10 +15,11 @@
   "scripts": {
     "test": "nyc mocha --opts ./mocha.opts",
     "test.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
-    "copy.views": "cpx \"src/**/*.{pug,pug}\" .dist",
-    "copy.views.watch": "cpx \"src/**/*.{pug,pug}\" .dist -w -v",
+    "copy.views": "copyfiles \"src/**/*.{pug,pug}\" .dist -V",
+    "copy.views.watch": "nodemon -w src/**/*.{pug,pug} -x copyfiles \"src/**/*.{pug,pug}\" .dist",
+    "copy.scripts": "copyfiles -f \"{!(_public),.dist/}**/*.{script,script.js}.{js,js,map}\" .dist/_public/scripts",
     "compile": "node_modules/.bin/tsc",
-    "start.dev": "concurrently \"npm run copy.views.watch\" \"tsc -w & npm run styles.watch\" \"nodemon --delay 15ms -w .dist .dist/server.js\"",
+    "start.dev": "tsc && concurrently \"npm run copy.scripts\" \"npm run copy.views.watch\" \"tsc\" \"npm run styles.watch\" \"nodemon --delay 15ms -w .dist --ignore .dist/_public .dist/server.js\"",
     "styles": "mkdir -p .dist/_public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/_public/css",
     "styles.watch": "mkdir -p .dist/_public/css && node_modules/.bin/stylus -w src/**/*.styl -o .dist/_public/css",
     "lint": "tslint --project tsconfig.json --config tslint.json"
@@ -39,6 +40,7 @@
     "@types/pug": "^2.0.4",
     "chai": "^4.2.0",
     "concurrently": "^4.0.1",
+    "copyfiles": "^2.1.0",
     "cpx": "^1.5.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
