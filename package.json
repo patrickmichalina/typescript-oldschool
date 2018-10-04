@@ -20,8 +20,11 @@
     "cp": "copyfiles -f \"{!(_public),.dist/}**/*.{script,script.js}.{js,js,map}\" .dist/_public/scripts",
     "copy.scripts": "nodemon -e {js} --ignore .dist/_public -w .dist -x npm run cp",
     "tsc": "tsc",
-    "start.dev": "tsc && ts-node start-dev",
-    "styles": "mkdir -p .dist/_public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/_public/css",
+    "tsc.scripts": "tsc -p tsconfig.scripts.json",
+    "tsc.scripts.watch": "tsc -p tsconfig.scripts.json -w",
+    "start.dev": "npm run tsc.scripts.watch & npm run styles & nodemon --ignore \"src/**/*.script.ts\" -e ts -w src -x ts-node src/server.ts || true",
+    "styles": "mkdir -p .dist/.public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/.public/css",
+    "styles.watch": "mkdir -p .dist/.public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/.public/css -w",
     "lint": "tslint --project tsconfig.json --config tslint.json"
   },
   "dependencies": {
