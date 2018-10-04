@@ -8,6 +8,7 @@ const addModuleToOurApp = addToEngine(app)
 
 app.set('view engine', 'pug')
 app.set('views', './src')
+app.disable('x-powered-by')
 
 addModuleToOurApp(homeModule)
 addModuleToOurApp(aboutModule)
