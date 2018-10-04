@@ -20,13 +20,12 @@
     "tsc": "tsc",
     "tsc.scripts": "tsc -p tsconfig.scripts.json",
     "tsc.scripts.watch": "tsc -p tsconfig.scripts.json -w",
-    "start.dev": "npm run scss.watch & npm run tsc.scripts.watch & nodemon --ignore \"src/**/*.script.ts\" -e ts -w src -x ts-node src/server.ts || true",
+    "start.dev": "npm run scss.watch & npm run tsc.scripts.watch & nodemon -e ts -d 10ms -w src -w .dist/.public/**/*.*  --ignore src/**/*.script.ts -x ts-node src/server.ts || true",
     "scss": "node-sass src -o .dist/.public/css",
     "scss.watch": "node-sass src -o .dist/.public/css -w -q",
     "lint": "tslint --project tsconfig.json --config tslint.json"
   },
   "dependencies": {
-    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "pug": "^2.0.3",
     "typescript-monads": "^3.3.0"
@@ -39,8 +38,8 @@
     "@types/node": "^10.11.4",
     "@types/pug": "^2.0.4",
     "chai": "^4.2.0",
-    "concurrently": "^4.0.1",
     "copyfiles": "^2.1.0",
+    "dotenv": "^6.0.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.9.3",
     "nodemon": "^1.18.4",
