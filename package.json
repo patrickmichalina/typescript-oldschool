@@ -13,8 +13,8 @@
     "url": "https://github.com/patrickmichalina"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/tsc",
     "test": "mocha --require ts-node/register src/**/*.spec.ts",
+    "test.watch": "mocha --require ts-node/register src/**/*.spec.ts -w --watch-extensions ts",
     "compile": "node_modules/.bin/tsc",
     "compile.watch": "node_modules/.bin/tsc -w",
     "styles": "mkdir -p .dist/_public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/_public/css",
