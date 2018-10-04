@@ -15,8 +15,6 @@
   "scripts": {
     "test": "nyc mocha --opts ./mocha.opts",
     "test.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
-    "copy.views": "cpx \"src/**/*.{pug,pug}\" .dist -v",
-    "copy.views.watch": "cpx \"src/**/*.{pug,pug}\" .dist -w -v",
     "cp": "copyfiles -f \"{!(_public),.dist/}**/*.{script,script.js}.{js,js,map}\" .dist/_public/scripts",
     "copy.scripts": "nodemon -e {js} --ignore .dist/_public -w .dist -x npm run cp",
     "tsc": "tsc",
@@ -43,7 +41,6 @@
     "chai": "^4.2.0",
     "concurrently": "^4.0.1",
     "copyfiles": "^2.1.0",
-    "cpx": "^1.5.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.9.3",
     "nodemon": "^1.18.4",
