@@ -3,21 +3,25 @@ import { homeModule } from './home/home.module'
 import { aboutModule } from './about/about.module'
 import { addToEngine } from './shared/util/add-to-engine'
 import { localsMiddleware } from './shared/middleware/locals'
+import { reader } from 'typescript-monads'
+import { IConfig } from './config'
 
-const app = express()
+export const createApplication = () => reader<IConfig, express.Application>(config => {
+  const app = express()
 
-app.disable('x-powered-by')
-app.set('view engine', 'pug')
-app.set('views', 'src')
+  app.disable('x-powered-by')
+  app.set('view engine', 'pug')
+  app.set('views', 'src')
 
-app.use(express.static('.dist/.public'))
-app.use(localsMiddleware({
-  basedir: '.dist/.public'
-}))
+  app.use(express.static('.dist/.public'))
+  app.use(localsMiddleware({
+    basedir: '.dist/.public'
+  }))
 
-const addModuleToOurApp = addToEngine(app)
+  const addModuleToOurApp = addToEngine(app)
 
-addModuleToOurApp(homeModule)
-addModuleToOurApp(aboutModule)
+  addModuleToOurApp(homeModule)
+  addModuleToOurApp(aboutModule)
 
-export { app }
+  return app
+})
