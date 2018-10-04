@@ -7,7 +7,7 @@ const app = express()
 const addModuleToOurApp = addToEngine(app)
 
 app.set('view engine', 'pug')
-app.set('views', './src')
+app.set('views', '.dist')
 app.disable('x-powered-by')
 
 addModuleToOurApp(homeModule)
