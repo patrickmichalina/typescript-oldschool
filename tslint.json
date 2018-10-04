@@ -3,7 +3,6 @@
   "rules": {
     "newline-per-chained-call": false,
     "prefer-object-spread": true,
-    "no-var-keyword": true,
     "no-parameter-reassignment": true,
     "typedef": false,
     "indent": [true, "spaces", 2],
@@ -19,11 +18,12 @@
     "readonly-keyword": true,
     "readonly-array": true,
     "no-let": true,
+    "no-var-keyword": true,
     "no-object-mutation": true,
     "no-delete": true,
     "no-method-signature": true,
-    "no-this": false,
-    "no-class": false,
+    "no-this": true,
+    "no-class": true,
     "no-expression-statement": false,
     "no-if-statement": true
   }
