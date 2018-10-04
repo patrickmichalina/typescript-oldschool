@@ -13,13 +13,28 @@
     "url": "https://github.com/patrickmichalina"
   },
   "scripts": {
-    "test": "mocha --require ts-node/register src/**/*.spec.ts",
-    "test.watch": "mocha --require ts-node/register src/**/*.spec.ts -w --watch-extensions ts",
+    "test": "nyc mocha --opts ./mocha.opts",
+    "test.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
     "compile": "node_modules/.bin/tsc",
     "compile.watch": "node_modules/.bin/tsc -w",
     "styles": "mkdir -p .dist/_public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/_public/css",
     "styles.watch": "mkdir -p .dist/_public/css && node_modules/.bin/stylus -w src/**/*.styl -o .dist/_public/css",
     "lint": "tslint --project tsconfig.json --config tslint.json"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "text-summary"
+    ],
+    "all": true
   },
   "engines": {
     "node": "= 10.11.0",
@@ -39,6 +54,8 @@
     "@types/pug": "^2.0.4",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
+    "nyc": "^13.0.1",
+    "source-map-support": "^0.5.9",
     "stylus": "^0.54.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
