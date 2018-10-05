@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "target": "es5",
-      "module": "commonjs",
+      "module": "system",
       "moduleResolution": "node",
       "lib": ["es2017", "dom"],
       "outDir": ".dist/.public/js",
@@ -17,8 +17,6 @@
       "noEmit": false,
       "allowSyntheticDefaultImports": false,
       "sourceMap": true,
-      "skipLibCheck": true,
-      "skipDefaultLibCheck": true,
       "strict": true,
       "strictNullChecks": true,
       "strictFunctionTypes": true,

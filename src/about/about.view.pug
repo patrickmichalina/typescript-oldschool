@@ -2,5 +2,6 @@ extends ../shared/views/layout.pug
 
 block content
   h1 ABOUT
-  script
-    include /js/about/about.script.js
+  button Test this out
+  +js-loader()
+  script System.import('/js/about/about.script.js')
