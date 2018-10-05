@@ -1,6 +1,6 @@
-Feature('CodeceptJS demo')
+Feature('About Page')
 
-Scenario('check Welcome page on site', (I) => {
+Scenario('check about page', (I) => {
   I.amOnPage('/about')
   I.see('ABOUT')
 })
