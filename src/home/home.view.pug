@@ -2,3 +2,9 @@ extends ../shared/views/layout.pug
 
 block content
   p 3
+  +card-component(true)(id="card-1")
+    p card 1
+  +card-component()(id="card-2")
+    p card 2
+  +card-component()(id="card-3")
+    p card 3

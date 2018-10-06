@@ -1,0 +1,6 @@
+mixin card-component(init)
+  .card-component&attributes(attributes)
+    if block
+      block
+  if init
+    script(src= 'js/shared/scripts/card-component.script.js')
