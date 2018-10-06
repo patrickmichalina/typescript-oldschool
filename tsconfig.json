@@ -22,10 +22,17 @@
       "strict": true,
       "strictNullChecks": true,
       "strictFunctionTypes": true,
-      "forceConsistentCasingInFileNames": true
+      "forceConsistentCasingInFileNames": true,
+      "types": [
+        "cypress"
+      ],
+      "typeRoots": [
+        "node_modules/@types"
+      ]
     },
     "include": [
-      "src/**/*.ts"
+      "src/**/*.ts",
+      "cypress"
     ],
     "exclude": [
       "src/**/*.script.ts"
