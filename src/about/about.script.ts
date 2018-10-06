@@ -1,4 +1,4 @@
-import { fromEvent } from "most"
+import { fromEvent } from 'most'
 import * as monads from 'typescript-monads'
 
 const button = document.querySelector('button')

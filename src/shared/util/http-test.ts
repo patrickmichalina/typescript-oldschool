@@ -1,7 +1,7 @@
-import { createApplication } from "../../app"
+import { createApplication } from '../../app'
 import { SuperTest, Test } from 'supertest'
-import { validateHtmlByString } from "./html-validator"
-import { maybe } from "typescript-monads"
+import { validateHtmlByString } from './html-validator'
+import { maybe } from 'typescript-monads'
 
 // creates an express app instance that is great for testing in Supertest
 export const syntheticHttpTestApp =
