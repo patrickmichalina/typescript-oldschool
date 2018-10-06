@@ -13,9 +13,10 @@
     "url": "https://github.com/patrickmichalina"
   },
   "scripts": {
-    "test": "nyc mocha --opts ./mocha.opts",
-    "test.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
     "tsc": "tsc",
+    "test.unit": "nyc mocha --opts ./mocha.opts",
+    "test.unit.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
+    "test.e2e.local.headless": "codeceptjs run --steps",
     "build.scripts": "tsc -p tsconfig.scripts.json",
     "build.scripts.watch": "tsc -p tsconfig.scripts.json -w",
     "build.styles": "node-sass src -o .dist/.public/css -q",
