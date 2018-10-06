@@ -1,33 +1,74 @@
 {
   "name": "flosports-web",
   "version": "0.0.0",
-  "description": "",
-  "scripts": {
-    "postinstall": "node_modules/.bin/tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "node_modules/.bin/tsc",
-    "compile.watch": "node_modules/.bin/tsc -w",
-    "styles": "mkdir -p .dist/_public/css && node_modules/.bin/stylus src/**/*.styl -o .dist/_public/css",
-    "styles.watch": "mkdir -p .dist/_public/css && node_modules/.bin/stylus -w src/**/*.styl -o .dist/_public/css",
-    "lint": "tslint --project tsconfig.json --config tslint.json"
+  "description": "Production ready Typescript+Express starter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrickmichalina/typescript-starter"
   },
-  "author": "",
-  "engines": {
-    "node": "= 10.11.0",
-    "npm": "= 6.4.1"
+  "author": {
+    "name": "Patrick Michalina",
+    "email": "patrickmichalina@mac.com",
+    "url": "https://github.com/patrickmichalina"
+  },
+  "scripts": {
+    "test": "nyc mocha --opts ./mocha.opts",
+    "test.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
+    "tsc": "tsc",
+    "build.scripts": "tsc -p tsconfig.scripts.json",
+    "build.scripts.watch": "tsc -p tsconfig.scripts.json -w",
+    "build.styles": "node-sass src -o .dist/.public/css -q",
+    "build.styles.watch": "node-sass src -o .dist/.public/css -w -q",
+    "start.dev": "npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & nodemon -e ts -d 5ms -w src -w .dist/.public/**/*.* --ignore src/**/*.script.ts -x ts-node src/index.ts || true",
+    "lint": "tslint --project tsconfig.json --config tslint.json"
   },
   "dependencies": {
     "express": "^4.16.3",
     "pug": "^2.0.3",
-    "typescript": "^3.1.1",
-    "typescript-monads": "^3.3.0"
+    "throng": "^4.0.0",
+    "typescript-monads": "^3.4.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.6",
+    "@types/dotenv": "^4.0.3",
     "@types/express": "^4.16.0",
+    "@types/mocha": "^5.2.5",
     "@types/node": "^10.11.4",
     "@types/pug": "^2.0.4",
-    "stylus": "^0.54.5",
+    "@types/throng": "^4.0.2",
+    "chai": "^4.2.0",
+    "codeceptjs": "^1.4.2",
+    "dotenv": "^6.0.0",
+    "mocha": "^5.2.0",
+    "most": "^1.7.3",
+    "node-sass": "^4.9.3",
+    "nodemon": "^1.18.4",
+    "nyc": "^13.0.1",
+    "puppeteer": "^1.9.0",
+    "source-map-support": "^0.5.9",
+    "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
-    "tslint-immutable": "^4.7.0"
+    "tslint-immutable": "^4.7.0",
+    "typescript": "^3.1.1"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "text-summary"
+    ],
+    "all": true
+  },
+  "engines": {
+    "node": "= 10.11.0",
+    "npm": "= 6.4.1"
   }
 }

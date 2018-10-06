@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
 
-export const getIndexHandler =
+export const getAboutHandler =
   (_req: Request, res: Response, _next: NextFunction) =>
-    res.render('home/home.view.pug')
-
+    res.render('about/about.view.pug')

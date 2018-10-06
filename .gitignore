@@ -142,3 +142,5 @@ fabric.properties
 .idea/sonarlint
 
 .dist
+.tmp
+output

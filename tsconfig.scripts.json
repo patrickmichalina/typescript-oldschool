@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
       "target": "es5",
-      "module": "commonjs",
+      "module": "system",
       "moduleResolution": "node",
       "lib": ["es2017", "dom"],
-      "outDir": ".dist",
+      "outDir": ".dist/.public/js",
       "isolatedModules": false,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
@@ -17,17 +17,12 @@
       "noEmit": false,
       "allowSyntheticDefaultImports": false,
       "sourceMap": true,
-      "skipLibCheck": true,
-      "skipDefaultLibCheck": true,
       "strict": true,
       "strictNullChecks": true,
       "strictFunctionTypes": true,
       "forceConsistentCasingInFileNames": true
     },
     "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
       "src/**/*.script.ts"
     ]
   }
