@@ -1,8 +1,13 @@
 extends ../shared/views/layout.pug
 include ../shared/components/card-component.pug
 
+block head
+  link(rel="stylesheet" type="text/css" href= 'css/home/home.style.css')
 block content
-  p 3
+  h1 Typescript Starter
+  p Welcome to a better way to build websites. No more "SPA" nonsense. This is 100% progressive enhancement. Do it for the users sake.
+  p As a point of reference I give you #[a(href="http://motherfuckingwebsite.com/") the ultimate website]
+  <hr>
   +card-component(true)(id="card-1")
     p card 1
   +card-component()(id="card-2")
