@@ -21,8 +21,8 @@
     "test.e2e.local.headless": "cypress run -- --steps",
     "build.scripts": "tsc -p tsconfig.scripts.json",
     "build.scripts.watch": "tsc -p tsconfig.scripts.json -w",
-    "build.styles": "node-sass src -o .dist/.public/css -q",
-    "build.styles.watch": "node-sass src -o .dist/.public/css -w -q",
+    "build.styles": "node-sass src -o .dist/.public/css -q --output-style compressed",
+    "build.styles.watch": "node-sass src -o .dist/.public/css -w -q --output-style compressed",
     "start": "npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & nodemon || true",
     "lint": "tslint --project tsconfig.json --config tslint.json"
   },

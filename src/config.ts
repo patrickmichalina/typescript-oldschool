@@ -15,13 +15,13 @@ export interface IConfig {
 }
 
 export const STANDARD_CONFIG: IConfig = {
+  NODE_DEBUG: true,
   PORT: 5000,
   CLUSTERED_WORKERS: 1,
-  NODE_DEBUG: true,
   EXTERANL_JS_DEPEPENDENCIES: {
     map: {
       'most': 'https://unpkg.com/most@1.7.3/dist/most.min.js',
-      'typescript-monads': 'https://unpkg.com/typescript-monads@3.4.1/index.min.js'
+      'typescript-monads': 'https://unpkg.com/typescript-monads@3.5.0/index.min.js'
     }
   }
 }
