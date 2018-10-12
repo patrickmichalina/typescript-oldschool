@@ -1,4 +1,3 @@
-// import { IMaybe } from "typescript-monads/interfaces"
 import { maybe } from 'typescript-monads'
 import { resolve } from 'path'
 
