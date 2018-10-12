@@ -23,16 +23,14 @@
     "build.scripts.watch": "tsc -p tsconfig.scripts.json -w",
     "build.styles": "node-sass src -o .dist/.public/css -q",
     "build.styles.watch": "node-sass src -o .dist/.public/css -w -q",
-    "start.dev": "npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & nodemon || true",
+    "start": "npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & nodemon || true",
     "lint": "tslint --project tsconfig.json --config tslint.json"
   },
   "nodemonConfig": {
     "ext": "ts",
     "exec": "ts-node src/index.ts",
-    "delay": "5",
     "watch": [
-      "src",
-      ".dist/.public/**/*.*"
+      "src"
     ],
     "ignore": [
       "src/**/*.spec-ui.ts",
