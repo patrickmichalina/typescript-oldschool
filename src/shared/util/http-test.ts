@@ -9,7 +9,10 @@ export const syntheticHttpTestApp =
     .run({
       CLUSTERED_WORKERS: 1,
       NODE_DEBUG: true,
-      PORT: 50005
+      PORT: 50005,
+      EXTERANL_JS_DEPEPENDENCIES: {
+        map: {}
+      }
     })
 
 // commonly used test functions
