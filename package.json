@@ -27,7 +27,8 @@
     "start": "npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & nodemon || true",
     "start.prod": "npm run build.prod && NODE_ENV=production node .dist/index",
     "lint": "tslint --project tsconfig.json --config tslint.json",
-    "compress": "ts-node tools/build/compress"
+    "compress": "ts-node tools/build/compress",
+    "heroku-postbuild": "npm run build.prod"
   },
   "nodemonConfig": {
     "ext": "ts",
