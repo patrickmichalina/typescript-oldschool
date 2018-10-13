@@ -13,44 +13,67 @@
     "url": "https://github.com/patrickmichalina"
   },
   "scripts": {
-    "test": "nyc mocha --opts ./mocha.opts",
-    "test.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
     "tsc": "tsc",
+    "test.unit": "nyc mocha --opts ./mocha.opts",
+    "test.unit.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
+    "test.http": "mocha --opts ./mocha.http.opts",
+    "test.e2e.local.gui": "cypress open -- --steps",
+    "test.e2e.local.headless": "cypress run -- --steps",
     "build.scripts": "tsc -p tsconfig.scripts.json",
     "build.scripts.watch": "tsc -p tsconfig.scripts.json -w",
-    "build.styles": "node-sass src -o .dist/.public/css -q",
-    "build.styles.watch": "node-sass src -o .dist/.public/css -w -q",
-    "start.dev": "npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & nodemon -e ts -d 5ms -w src -w .dist/.public/**/*.* --ignore src/**/*.script.ts -x ts-node src/index.ts || true",
+    "build.styles": "node-sass src -o .dist/.public/css -q --output-style compressed",
+    "build.styles.watch": "node-sass src -o .dist/.public/css -w -q --output-style compressed",
+    "start": "npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & nodemon || true",
     "lint": "tslint --project tsconfig.json --config tslint.json"
   },
+  "nodemonConfig": {
+    "ext": "ts",
+    "exec": "ts-node src/index.ts",
+    "watch": [
+      "src"
+    ],
+    "ignore": [
+      "src/**/*.spec-ui.ts",
+      "src/**/*.spec-http.ts",
+      "src/**/*.spec-unit.ts",
+      "src/**/*.script.ts"
+    ]
+  },
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.16.4",
+    "express-static-gzip": "^1.1.3",
     "pug": "^2.0.3",
+    "staticify": "^3.0.0",
     "throng": "^4.0.0",
-    "typescript-monads": "^3.4.1"
+    "typescript-monads": "^3.5.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.6",
     "@types/dotenv": "^4.0.3",
     "@types/express": "^4.16.0",
+    "@types/iltorb": "^2.3.0",
+    "@types/jquery": "^3.3.16",
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.11.4",
+    "@types/node": "^10.11.7",
     "@types/pug": "^2.0.4",
+    "@types/supertest": "^2.0.6",
     "@types/throng": "^4.0.2",
     "chai": "^4.2.0",
-    "codeceptjs": "^1.4.2",
-    "dotenv": "^6.0.0",
+    "cypress": "^3.1.0",
+    "dotenv": "^6.1.0",
+    "html-validator": "^3.1.2",
+    "iltorb": "^2.4.0",
     "mocha": "^5.2.0",
     "most": "^1.7.3",
     "node-sass": "^4.9.3",
     "nodemon": "^1.18.4",
     "nyc": "^13.0.1",
-    "puppeteer": "^1.9.0",
     "source-map-support": "^0.5.9",
+    "supertest": "^3.3.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
-    "tslint-immutable": "^4.7.0",
-    "typescript": "^3.1.1"
+    "tslint-immutable": "^4.8.0",
+    "typescript": "^3.1.3"
   },
   "nyc": {
     "include": [
@@ -68,7 +91,7 @@
     "all": true
   },
   "engines": {
-    "node": "= 10.11.0",
+    "node": "= 10.12.0",
     "npm": "= 6.4.1"
   }
 }

@@ -1,6 +1,5 @@
-// import { IMaybe } from "typescript-monads/interfaces"
-import { maybe } from "typescript-monads"
-import { resolve } from "path"
+import { maybe } from 'typescript-monads'
+import { resolve } from 'path'
 
 export interface IServerAppConfig {
   readonly PORT: number

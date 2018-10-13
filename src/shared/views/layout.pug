@@ -1,12 +1,12 @@
-include ./mixins.pug
-
 doctype html
 html(lang="en")
   head
-    //- meta(name="title", content= pageTitle || title)
-    //- meta(name="description", content= pageDescription || description)
+    title Typescript Starter
+    meta(name="title", content="Typescript Starter")
+    meta(name="description", content="Typescript Starter")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    
+    link(rel="stylesheet" type="text/css" href= static('/css/shared/styles/global.style.css'))
+    block head
   body(vocab="http://schema.org")
     .body
       block content

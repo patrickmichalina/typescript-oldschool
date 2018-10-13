@@ -1,3 +1,5 @@
-mixin js-loader()
+mixin js-loader(scriptRefs)
  script(id="system-loader" src= "https://cdn.jsdelivr.net/npm/systemjs@0.21.5/dist/system-production.js")
  script(id="system-mapper") SystemJS.config(!{JSON.stringify(loaderConfig, null, 2)})
+ each script in scriptRefs
+  script System.import('#{script}')

@@ -1,7 +1,10 @@
 extends ../shared/views/layout.pug
+include ../shared/views/mixins/js-loader.pug
 
 block content
   h1 ABOUT
   button Test this out
-  +js-loader()
-  script System.import('/js/about/about.script.js')
+  +js-loader([
+    '/js/about/about.script.js',
+    '/js/home/home.script.js'
+  ])

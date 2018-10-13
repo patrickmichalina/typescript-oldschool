@@ -16,12 +16,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   app.use(express.static('.dist/.public'))
   app.use(localsMiddleware({
     basedir: '.dist/.public',
-    loaderConfig: {
-      map: {
-        'most': 'https://unpkg.com/most@1.7.3/dist/most.min.js',
-        'typescript-monads': 'https://unpkg.com/typescript-monads@3.4.1/index.min.js'
-      }
-    }
+    loaderConfig: config.EXTERANL_JS_DEPEPENDENCIES
   }))
 
   const addModuleToOurApp = addToEngine(app)

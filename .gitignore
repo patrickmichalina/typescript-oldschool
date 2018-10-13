@@ -144,3 +144,6 @@ fabric.properties
 .dist
 .tmp
 output
+
+cypress/screenshots
+cypress/videos
