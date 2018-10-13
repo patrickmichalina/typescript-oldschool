@@ -24,7 +24,8 @@
       "strictFunctionTypes": true,
       "forceConsistentCasingInFileNames": true,
       "types": [
-        "cypress"
+        "cypress",
+        "node"
       ],
       "typeRoots": [
         "node_modules/@types"

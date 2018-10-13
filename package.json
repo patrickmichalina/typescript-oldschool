@@ -32,7 +32,7 @@
   },
   "nodemonConfig": {
     "ext": "ts",
-    "exec": "ts-node src/index.ts",
+    "exec": "ts-node -r dotenv/config src/index.ts",
     "watch": [
       "src"
     ],
@@ -54,7 +54,6 @@
   },
   "devDependencies": {
     "@types/chai": "^4.1.6",
-    "@types/dotenv": "^4.0.3",
     "@types/express": "^4.16.0",
     "@types/iltorb": "^2.3.0",
     "@types/jquery": "^3.3.17",

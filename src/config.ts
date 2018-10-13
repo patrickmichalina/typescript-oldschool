@@ -1,7 +1,4 @@
-import { config as loadLocalEnvironmentVariables } from 'dotenv'
 import { StringDictionary } from './shared/interfaces/data-structures'
-
-loadLocalEnvironmentVariables()
 
 interface SystemJsConfig {
   readonly map: StringDictionary
