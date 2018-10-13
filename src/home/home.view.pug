@@ -1,5 +1,6 @@
 extends ../shared/views/layout.pug
 include ../shared/components/card-component.pug
+include ../shared/views/mixins/js-loader.pug
 
 block head
   link(rel="stylesheet" type="text/css" href= static('/css/home/home.style.css'))
@@ -9,9 +10,13 @@ block content
   p No more Single Page App (SPA) nonsense. Do it for the users sake.
   p As a point of reference I give you #[a(href="http://motherfuckingwebsite.com/") the ultimate website]
   <hr>
-  +card-component(true)(id="card-1")
+  +card-component()(id="card-1")
     p card 1
   +card-component()(id="card-2")
     p card 2
   +card-component()(id="card-3")
     p card 3
+  +js-loader([
+    '/shared/components/card-component.script.js'
+  ])
+  
