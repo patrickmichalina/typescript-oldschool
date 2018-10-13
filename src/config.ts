@@ -1,4 +1,5 @@
 import { StringDictionary } from './shared/interfaces/data-structures'
+import { maybe } from 'typescript-monads'
 
 interface SystemJsConfig {
   readonly map: StringDictionary
@@ -13,7 +14,7 @@ export interface IConfig {
 
 export const STANDARD_CONFIG: IConfig = {
   NODE_DEBUG: true,
-  PORT: 5000,
+  PORT: maybe(process.env.PORT).map(p => +p).valueOr(5000),
   CLUSTERED_WORKERS: 1,
   EXTERANL_JS_DEPEPENDENCIES: {
     map: {
