@@ -14,6 +14,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   const staticify = require('staticify')(join('.dist', '.public'), { includeAll: true })
   const expressStaticGzip = require('express-static-gzip')
   const minifyHTML = require('express-minify-html')
+  const compression = require('compression')
 
   app.disable('x-powered-by')
   app.set('view engine', 'pug')
@@ -48,6 +49,8 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
       minifyJS: true
     }
   }))
+
+  app.use(compression())
 
   addModuleToOurApp(homeModule)
   addModuleToOurApp(aboutModule)

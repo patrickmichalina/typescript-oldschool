@@ -17,7 +17,7 @@ require('workbox-build')
       },
       {
         urlPattern: /\.(?:js|css)$/,
-        handler: 'cacheFirst',
+        handler: 'staleWhileRevalidate',
         options: {
           cacheName: 'static-resources'
         }

@@ -1,8 +1,8 @@
 .card-component {
   display: block;
-  background-color: coral;
+  background-color: aqua;
   &:hover {
     cursor: pointer;
-    background-color: grey;
+    background-color: red;
   }
 }
