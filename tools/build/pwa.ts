@@ -23,7 +23,7 @@ require('workbox-build')
         }
       },
       {
-        urlPattern: /^(.(?!.*\.$|.*\.))*$/,
+        urlPattern: /\/(.+)\/([^\./]+)*$/,
         handler: 'networkFirst',
         options: {
           cacheName: 'pages'
