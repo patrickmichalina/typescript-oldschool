@@ -26,7 +26,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   }
 
   app.use(compressedStaticExtensionsMiddleware)
-  app.use('/sw.js', express.static('.dist/.public/js/sw.js'))
+  app.use('/sw.js', expressStaticGzip('.dist/.public', staticCompSettings))
   app.use('/js', expressStaticGzip('.dist/.public/js', staticCompSettings))
   app.use('/css', expressStaticGzip('.dist/.public/css', staticCompSettings))
   app.use(staticify.middleware)

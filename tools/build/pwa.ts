@@ -1,6 +1,6 @@
 require('workbox-build')
   .generateSW({
-    swDest: '.dist/.public/js/sw.js',
+    swDest: '.dist/.public/sw.script.js',
     globDirectory: '.dist/.public',
     globPatterns: ['**\/*.{js,css}'],
     runtimeCaching: [

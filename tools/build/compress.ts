@@ -3,7 +3,7 @@ import { createReadStream, createWriteStream, readdirSync, statSync } from 'fs'
 import { resolve } from 'path'
 import { compressStream } from 'iltorb'
 
-const files: ReadonlyArray<string> = ['.dist/.public/js', '.dist/.public/css']
+const files: ReadonlyArray<string> = ['.dist/.public', '.dist/.public/js', '.dist/.public/css']
 
 const compressFile =
   (filename: string, compression: Function, ext: string) =>
