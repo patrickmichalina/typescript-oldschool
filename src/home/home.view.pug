@@ -1,11 +1,11 @@
 extends ../shared/views/layout.pug
 include ../shared/components/card-component.pug
 include ../shared/views/mixins/js-loader.pug
-
-block head
-  link(rel="stylesheet" type="text/css" href= global.static('/css/home/home.style.css'))
+include ../shared/views/mixins/style-loader.pug
+  
 block content
-  link(rel="stylesheet" type="text/css" href= global.static('/css/shared/components/card-component.style.css'))
+  +style-loader('/css/home/home.style.css')
+  +style-loader('/css/shared/components/card-component.style.css')
   h1 Typescript Starter
   p Welcome to a simpler way to build dynamic websites adhering to the principle of progressive enhancement.
   p No more Single Page App (SPA) nonsense. Do it for the users sake.

@@ -1,0 +1,4 @@
+mixin style-loader(style)
+  link(rel="stylesheet", href= global.static(style), media="print", onload="if(media!='all')media='all'")
+  noscript
+    link(rel="stylesheet", href= global.static(style))
