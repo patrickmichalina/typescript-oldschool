@@ -7,6 +7,7 @@ import { reader } from 'typescript-monads'
 import { IConfig } from './config'
 import { compressedStaticExtensionsMiddleware } from './shared/middleware/compressed-statics'
 import { join } from 'path'
+import { readFileSync } from 'fs'
 
 export const createApplication = () => reader<IConfig, express.Application>(config => {
   const app = express()
@@ -40,13 +41,15 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
         name: 'viewport',
         content: 'width=device-width, initial-scale=1.0'
       }],
-      stylesheets: {
-        inline: [],
-        linked: []
+      styles: {
+        inline: { 
+          core: readFileSync('.dist/.public/css/shared/styles/global.style.css', 'utf-8')
+        },
+        linked: { }
       },
       scripts: {
-        inline: [],
-        linked: []
+        inline: { },
+        linked: { }
       }
     }
   }))

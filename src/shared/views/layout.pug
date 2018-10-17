@@ -7,11 +7,24 @@ html(lang="en")
     if (global.metaElements || []).length
       each attributes in global.metaElements
         meta()&attributes(attributes)
-    link(rel="stylesheet" type="text/css" href= global.static('/css/shared/styles/global.style.css'))
+    if global.styles.inline
+      each style, index in global.styles.inline
+        style(id= 'inline_style_' + index)= style
+    if global.styles.linked
+      each style, index in global.styles.linked
+        link(id= 'linked_style_' + index rel="stylesheet", href= style, media="print", onload="if(media!='all')media='all'")
+        noscript
+          link(id= 'linked_style_no_js_' + index rel="stylesheet", href= style)
+    if global.scripts.inline
+      each script, index in global.scripts.inline
+        script(id= 'inline_script_' + index)
+          != script
+    if global.scripts.linked
+      each script, index in global.scripts.linked
+        script(id= 'linked_script_' + index src= script)
+    //- link(rel="stylesheet" type="text/css" href= global.static('/css/shared/styles/global.style.css'))
     block head
   body(vocab="http://schema.org")
     include ./scripts/sw.pug
     .body
       block content
-    //- if reloadScript
-    //-   script(src="/reload/reload.js")
