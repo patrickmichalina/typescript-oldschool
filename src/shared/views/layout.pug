@@ -4,8 +4,10 @@ html(lang="en")
     title Typescript Starter
     meta(name="title", content="Typescript Starter")
     meta(name="description", content="Typescript Starter")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet" type="text/css" href= static('/css/shared/styles/global.style.css'))
+    if (global.metaElements || []).length
+      each attributes in global.metaElements
+        meta()&attributes(attributes)
+    link(rel="stylesheet" type="text/css" href= global.static('/css/shared/styles/global.style.css'))
     block head
   body(vocab="http://schema.org")
     include ./scripts/sw.pug

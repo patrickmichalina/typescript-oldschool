@@ -32,9 +32,23 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   app.use('/css', expressStaticGzip('.dist/.public/css', staticCompSettings))
   app.use(staticify.middleware)
   app.use(localsMiddleware({
-    basedir: '.dist/.public',
-    static: staticify.getVersionedPath,
-    loaderConfig: config.EXTERANL_JS_DEPEPENDENCIES
+    global: {
+      basedir: '.dist/.public',
+      static: staticify.getVersionedPath,
+      loaderConfig: config.EXTERANL_JS_DEPEPENDENCIES,
+      metaElements: [{
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1.0'
+      }],
+      stylesheets: {
+        inline: [],
+        linked: []
+      },
+      scripts: {
+        inline: [],
+        linked: []
+      }
+    }
   }))
 
   app.use(minifyHTML({
