@@ -12,11 +12,11 @@ require('workbox-build')
           cacheableResponse: { statuses: [0, 200] },
           expiration: {
             maxEntries: 20,
-          },
+          }
         }
       },
       {
-        urlPattern: /\.(?:js|css)$/,
+        urlPattern: /\.(?:js|css|json|png|svg|jpeg|jpg)$/,
         handler: 'staleWhileRevalidate',
         options: {
           cacheName: 'static-resources'

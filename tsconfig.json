@@ -1,41 +1,46 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "lib": ["es2017", "dom"],
-      "outDir": ".dist",
-      "isolatedModules": false,
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "noImplicitAny": true,
-      "noImplicitUseStrict": false,
-      "noEmitHelpers": false,
-      "noLib": false,
-      "noUnusedLocals": true,
-      "noEmitOnError": true,
-      "noEmit": false,
-      "allowSyntheticDefaultImports": false,
-      "sourceMap": true,
-      "skipLibCheck": true,
-      "skipDefaultLibCheck": true,
-      "strict": true,
-      "strictNullChecks": true,
-      "strictFunctionTypes": true,
-      "forceConsistentCasingInFileNames": true,
-      "types": [
-        "cypress",
-        "node"
-      ],
-      "typeRoots": [
-        "node_modules/@types"
-      ]
-    },
-    "include": [
-      "src/**/*.ts",
-      "cypress"
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": [
+      "es2017",
+      "dom"
     ],
-    "exclude": [
-      "src/**/*.script.ts"
+    "outDir": ".dist",
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": true,
+    "noImplicitUseStrict": false,
+    "noEmitHelpers": false,
+    "noLib": false,
+    "noUnusedLocals": true,
+    "noEmitOnError": true,
+    "noEmit": false,
+    "allowSyntheticDefaultImports": false,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": false,
+    "skipDefaultLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "cypress",
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "cypress"
+  ],
+  "exclude": [
+    "src/**/*.script.ts"
+  ]
+}

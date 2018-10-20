@@ -2,8 +2,10 @@ doctype html
 html(lang="en")
   head
     title Typescript Starter
-    meta(name="title", content="Typescript Starter")
-    meta(name="description", content="Typescript Starter")
+    meta(name="title" content="Typescript Starter")
+    meta(name="description" content="Typescript Starter")
+    meta(name="theme-color" content="#3367D6")
+    link(rel="manifest" href="/manifest.json")
     if (global.metaElements || []).length
       each attributes in global.metaElements
         meta()&attributes(attributes)

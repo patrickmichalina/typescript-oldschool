@@ -28,6 +28,11 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   }
 
   app.use(compressedStaticExtensionsMiddleware)
+  app.get('/manifest.json', (_, res) => {
+    res.setHeader('Cache-Control', 'public, max-age=86400, s-max-age=86400')
+    res.json(config.MANIFEST)
+    res.end()
+  })
   app.use('/sw.js', expressStaticGzip('.dist/.public', staticCompSettings))
   app.use('/js', expressStaticGzip('.dist/.public/js', staticCompSettings))
   app.use('/css', expressStaticGzip('.dist/.public/css', staticCompSettings))
