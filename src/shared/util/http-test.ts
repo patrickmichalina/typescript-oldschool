@@ -12,7 +12,8 @@ export const syntheticHttpTestApp =
       PORT: 50005,
       EXTERANL_JS_DEPEPENDENCIES: {
         map: {}
-      }
+      },
+      MANIFEST: {}
     })
 
 // commonly used test functions
