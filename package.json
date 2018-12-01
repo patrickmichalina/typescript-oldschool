@@ -26,7 +26,7 @@
     "build.prod": "npm run build.scripts && npm run build.styles && ts-node tools/build/pwa && npm run uglify && npm run compress && tsc",
     "start": "npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & ts-node tools/build/pwa & nodemon || true",
     "start.prod": "npm run build.prod && NODE_ENV=production node .dist/index",
-    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "lint": "tsc && tslint --project tsconfig.json --config tslint.json",
     "compress": "ts-node tools/build/compress",
     "uglify": "ts-node tools/build/uglify.ts",
     "heroku-postbuild": "npm run build.prod"

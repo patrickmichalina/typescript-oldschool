@@ -23,7 +23,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
 
   const staticCompSettings = {
     enableBrotli: true,
-    orderPreference: ['br', 'gzip']
+    orderPreference: ['br', 'gzip'] as ReadonlyArray<string>
     // maxAge: config.IS_LOCAL_DEV ? '0' : '7d'
   }
 
@@ -45,7 +45,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
       metaElements: [{
         name: 'viewport',
         content: 'width=device-width, initial-scale=1.0'
-      }],
+      }] as ReadonlyArray<any>,
       styles: {
         inline: { 
           core: readFileSync('.dist/.public/css/shared/styles/global.style.css', 'utf-8')
