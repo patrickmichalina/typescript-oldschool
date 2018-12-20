@@ -1,5 +1,14 @@
 # Typescript Oldschool
-After becoming jaded with "modern" Javascript development using Single Page Applications (SPA's) i've decided to go back an time and build a boilerplate that focuses on progressive enhancement and performance. Every page is server rendered.
+Boilerplate built in the spirit of progressive enhancement and performance.
 
+## Tech Stack
+
+- Node.js
+- TypeScript
+- Pug for HTML templating
+- SCSS for CSS preprocessing
+- Workbox for PWA management
+- Mocha for testing
+- Cypress for E2E
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/patrickmichalina/typescript-oldschool)
