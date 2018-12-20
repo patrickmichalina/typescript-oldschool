@@ -22,7 +22,7 @@ export const STANDARD_CONFIG: IConfig = {
   EXTERANL_JS_DEPEPENDENCIES: {
     map: {
       'most': 'https://unpkg.com/most@1.7.3/dist/most.min.js',
-      'typescript-monads': 'https://unpkg.com/typescript-monads@3.5.0/index.min.js'
+      'typescript-monads': 'https://unpkg.com/typescript-monads@3.8.0/index.min.js'
     }
   }
 }
