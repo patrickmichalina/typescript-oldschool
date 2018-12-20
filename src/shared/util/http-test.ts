@@ -9,11 +9,13 @@ export const syntheticHttpTestApp =
     .run({
       CLUSTERED_WORKERS: 1,
       NODE_DEBUG: true,
-      PORT: 50005,
+      PORT: 5005,
       EXTERANL_JS_DEPEPENDENCIES: {
         map: {}
       },
-      MANIFEST: {}
+      MANIFEST: {},
+      DIST_FOLDER: '.dist/.public',
+      MANIFEST_CACHE_CONTROL: 'private, no-cache'
     })
 
 // commonly used test functions
