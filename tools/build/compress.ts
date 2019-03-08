@@ -1,7 +1,6 @@
-import { createGzip } from 'zlib'
 import { createReadStream, createWriteStream, readdirSync, statSync } from 'fs'
 import { resolve } from 'path'
-import { compressStream } from 'iltorb'
+const zlib = require('zlib')
 
 const files: ReadonlyArray<string> = ['.dist/.public', '.dist/.public/js', '.dist/.public/css']
 
@@ -43,7 +42,7 @@ const getPathsDeep =
       }, [])
   }
 
-const gzip = getPathsDeep(files).filter(a => !new RegExp(/.gz|.br/).test(a)).map(file => compressFile(file, createGzip, 'gz'))
-const brotli = getPathsDeep(files).filter(a => !new RegExp(/.br|.gz/).test(a)).map(file => compressFile(file, compressStream, 'br'))
+const gzip = getPathsDeep(files).filter(a => !new RegExp(/.gz|.br/).test(a)).map(file => compressFile(file, zlib.createGzip, 'gz'))
+const brotli = getPathsDeep(files).filter(a => !new RegExp(/.br|.gz/).test(a)).map(file => compressFile(file, zlib.createBrotliCompress, 'br'))
 
 Promise.all([...gzip, ...brotli])
