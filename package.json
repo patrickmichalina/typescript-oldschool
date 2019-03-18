@@ -82,7 +82,7 @@
     "tslint-immutable": "^5.4.0",
     "typescript": "^3.3.3333",
     "uglify-js": "^3.4.10",
-    "workbox-build": "^3.6.3"
+    "workbox-build": "^4.1.1"
   },
   "nyc": {
     "include": [
