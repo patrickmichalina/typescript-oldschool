@@ -1,6 +1,6 @@
-Array.from(document.querySelectorAll<HTMLDivElement>('.card-component')).forEach(a => {
+Array.from(document.querySelectorAll<HTMLDivElement>('.card-component')).forEach(element => {
   console.log('I am a component that needs javascript all to myself :)')
-  a.addEventListener('click', evt => {
-    console.log(a.id)
+  element.addEventListener('click', evt => {
+    console.log(element.id, element.getAttribute('data-meta'))
   })
 })

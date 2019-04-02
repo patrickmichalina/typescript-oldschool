@@ -11,11 +11,11 @@ block content
   p No more Single Page App (SPA) nonsense. Do it for the users sake.
   p As a point of reference I give you #[a(href="http://motherfuckingwebsite.com/") the ultimate website]
   <hr>
-  +card-component()(id="card-1")
+  +card-component()(id="card-1" data-meta="meta data v1")
     p card component 1
-  +card-component()(id="card-2")
+  +card-component()(id="card-2" data-meta="meta data v2")
     p card component 2
-  +card-component()(id="card-3")
+  +card-component()(id="card-3" data-meta="meta data v3")
     p card component 3
   +js-loader([
     '/shared/components/card/card-component.script.js'
