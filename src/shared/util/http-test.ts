@@ -30,14 +30,14 @@ export const expectText200 =
 export const expectText200Done =
   (client: SuperTest<Test>) =>
     (url: string) =>
-      (done: Mocha.Done) => {
+      (done: any) => {
         expectText200(client)(url).end(done)
       }
 
 export const validateHtml =
   (client: SuperTest<Test>) =>
     (url: string) =>
-      (done: Mocha.Done) => {
+      (done: any) => {
         expectText200(client)(url)
           .end((err, res) => {
             maybe(err)
