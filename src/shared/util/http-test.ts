@@ -14,7 +14,7 @@ export const syntheticHttpTestApp =
         map: {}
       },
       MANIFEST: {},
-      DIST_FOLDER: '.dist/.public',
+      DIST_FOLDER: '.dist/wwwroot',
       MANIFEST_CACHE_CONTROL: 'private, no-cache'
     })
 

@@ -3,7 +3,7 @@ import { minify } from 'uglify-js'
 import { resolve } from 'path'
 import { readFileSync, writeFileSync } from 'fs'
 
-glob('.dist/.public/**/*.js', (err, matches) => {
+glob('.dist/wwwroot/**/*.js', (_err, matches) => {
   matches
     .map(path => resolve(path))
     .map(path => ({ path, file: readFileSync(path, 'utf-8') }))

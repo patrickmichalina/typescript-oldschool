@@ -4,7 +4,7 @@
       "module": "system",
       "moduleResolution": "node",
       "lib": ["es2017", "dom"],
-      "outDir": ".dist/.public/js",
+      "outDir": ".dist/wwwroot/js",
       "isolatedModules": false,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,

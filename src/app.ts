@@ -48,7 +48,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
       }] as ReadonlyArray<any>,
       styles: {
         inline: { 
-          core: readFileSync('.dist/.public/css/shared/styles/global.style.css', 'utf-8')
+          core: readFileSync('.dist/wwwroot/css/shared/styles/global.style.css', 'utf-8')
         },
         linked: { }
       },

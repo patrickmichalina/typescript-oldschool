@@ -21,7 +21,7 @@ export const STANDARD_CONFIG: IConfig = {
   NODE_DEBUG: true,
   PORT: maybe(process.env.PORT).map(p => +p).valueOr(5000),
   CLUSTERED_WORKERS: 1,
-  DIST_FOLDER: join('.dist', '.public'),
+  DIST_FOLDER: join('.dist', 'wwwroot'),
   MANIFEST: manifest,
   MANIFEST_CACHE_CONTROL: 'public, max-age=86400, s-max-age=86400',
   EXTERANL_JS_DEPEPENDENCIES: {
