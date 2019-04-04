@@ -5,7 +5,8 @@ import { localsMiddleware } from './shared/middleware/locals'
 import { reader } from 'typescript-monads'
 import { IConfig } from './config'
 import { compressedStaticExtensionsMiddleware } from './shared/middleware/compressed-statics'
-import { readFileSync } from 'fs'
+import { readFileSync, readFile } from 'fs'
+import { resolve } from 'path'
 import * as express from 'express'
 
 export const createApplication = () => reader<IConfig, express.Application>(config => {
@@ -33,9 +34,16 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
     res.json(config.MANIFEST)
     res.end()
   })
+  app.use('/favicon.ico', (_, res) => {
+    readFile(resolve(basedir, 'img/favicon.ico'), (err, buffer) => {
+      res.setHeader('Content-Type', 'image/x-icon')
+      res.setHeader('Content-Length', buffer.length)
+      res.write(buffer)
+      res.end()
+    })
+  })
   app.use('/sw.js', expressStaticGzip(basedir, staticCompSettings))
-  app.use('/js', expressStaticGzip(basedir + '/js', staticCompSettings))
-  app.use('/css', expressStaticGzip(basedir + '/css', staticCompSettings))
+  app.use('/assets', expressStaticGzip(basedir, staticCompSettings))
   app.use(staticify.middleware)
   app.use(localsMiddleware({
     global: {
