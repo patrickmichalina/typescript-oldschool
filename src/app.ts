@@ -17,7 +17,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   const expressStaticGzip = require('express-static-gzip')
   const minifyHTML = require('express-minify-html')
   const compression = require('compression')
-  
+
   app.disable('x-powered-by')
   app.set('view engine', 'pug')
   app.set('views', 'src')
@@ -29,17 +29,23 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   }
 
   app.use(compressedStaticExtensionsMiddleware)
-  app.get('/manifest.json', (_, res) => {
+  app.get('/manifest.json', (req, res) => {
     res.setHeader('Cache-Control', config.MANIFEST_CACHE_CONTROL)
     res.json(config.MANIFEST)
     res.end()
   })
   app.use('/favicon.ico', (_, res) => {
     readFile(resolve(basedir, 'img/favicon.ico'), (err, buffer) => {
-      res.setHeader('Content-Type', 'image/x-icon')
-      res.setHeader('Content-Length', buffer.length)
-      res.write(buffer)
-      res.end()
+      // tslint:disable-next-line:no-if-statement
+      if (err) {
+        res.sendStatus(404)
+        res.end()
+      } else {
+        res.setHeader('Content-Type', 'image/x-icon')
+        res.setHeader('Content-Length', buffer.length)
+        res.write(buffer)
+        res.end()
+      }
     })
   })
   app.use('/sw.js', expressStaticGzip(basedir, staticCompSettings))
@@ -50,19 +56,20 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
       basedir,
       static: staticify.getVersionedPath,
       loaderConfig: config.EXTERANL_JS_DEPEPENDENCIES,
+      manifest: config.MANIFEST,
       metaElements: [{
         name: 'viewport',
         content: 'width=device-width, initial-scale=1.0'
       }] as ReadonlyArray<any>,
       styles: {
-        inline: { 
+        inline: {
           core: readFileSync('.dist/wwwroot/css/shared/styles/global.style.css', 'utf-8')
         },
-        linked: { }
+        linked: {}
       },
       scripts: {
-        inline: { },
-        linked: { }
+        inline: {},
+        linked: {}
       }
     }
   }))

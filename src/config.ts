@@ -1,7 +1,7 @@
 import { StringDictionary } from './shared/interfaces/data-structures'
 import { maybe } from 'typescript-monads'
-import * as manifest from './shared/manifest.json'
 import { join } from 'path'
+import * as MANIFEST from './shared/manifest.json'
 
 interface SystemJsConfig {
   readonly map: StringDictionary
@@ -22,7 +22,7 @@ export const STANDARD_CONFIG: IConfig = {
   PORT: maybe(process.env.PORT).map(p => +p).valueOr(5000),
   CLUSTERED_WORKERS: 1,
   DIST_FOLDER: join('.dist', 'wwwroot'),
-  MANIFEST: manifest,
+  MANIFEST,
   MANIFEST_CACHE_CONTROL: 'public, max-age=86400, s-max-age=86400',
   EXTERANL_JS_DEPEPENDENCIES: {
     map: {
