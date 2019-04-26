@@ -24,8 +24,8 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
 
   const staticCompSettings = {
     enableBrotli: true,
-    orderPreference: ['br', 'gzip'] as ReadonlyArray<string>
-    // maxAge: config.IS_LOCAL_DEV ? '0' : '7d'
+    orderPreference: ['br', 'gzip'] as ReadonlyArray<string>,
+    maxAge: config.NODE_DEBUG ? '0' : '7d'
   }
 
   app.use(compressedStaticExtensionsMiddleware)
