@@ -7,6 +7,7 @@ import { maybe } from 'typescript-monads'
 export const syntheticHttpTestApp =
   createApplication()
     .run({
+      APP_VERSION: 'testing-app-version',
       CLUSTERED_WORKERS: 1,
       NODE_DEBUG: true,
       PORT: 5005,

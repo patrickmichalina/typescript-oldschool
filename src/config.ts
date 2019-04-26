@@ -15,9 +15,11 @@ export interface IConfig {
   readonly DIST_FOLDER: string
   readonly MANIFEST_CACHE_CONTROL: string
   readonly MANIFEST: any
+  readonly APP_VERSION: string
 }
 
 export const STANDARD_CONFIG: IConfig = {
+  APP_VERSION: maybe(process.env.SOURCE_VERSION).valueOr('local-dev'),
   NODE_DEBUG: maybe(process.env.NODE_ENV).filter(a => a === 'production').map(a => false).valueOr(true),
   PORT: maybe(process.env.PORT).map(p => +p).valueOr(5000),
   CLUSTERED_WORKERS: 1,

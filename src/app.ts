@@ -53,6 +53,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   app.use(staticify.middleware)
   app.use(localsMiddleware({
     global: {
+      appVersion: config.APP_VERSION,
       basedir,
       static: staticify.getVersionedPath,
       loaderConfig: config.EXTERANL_JS_DEPEPENDENCIES,
