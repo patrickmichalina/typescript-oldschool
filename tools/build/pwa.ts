@@ -2,10 +2,11 @@ require('workbox-build')
   .generateSW({
     swDest: '.dist/wwwroot/sw.script.js',
     globDirectory: '.dist/wwwroot',
-    globPatterns: ['**\/*.{js,css}'],
+    globPatterns: ['**\/*.{js,css,ico,png}'],
     modifyURLPrefix: {
       'css/': 'assets/css/',
-      'js/': 'assets/js/'
+      'js/': 'assets/js/',
+      'img/': 'assets/img/'
     },
     runtimeCaching: [
       {
