@@ -22,7 +22,7 @@ export const STANDARD_CONFIG: IConfig = {
   APP_VERSION: maybe(process.env.HEROKU_RELEASE_VERSION).valueOr('local-dev'),
   NODE_DEBUG: maybe(process.env.NODE_ENV).filter(a => a === 'production').map(a => false).valueOr(true),
   PORT: maybe(process.env.PORT).map(p => +p).valueOr(5000),
-  CLUSTERED_WORKERS: 1,
+  CLUSTERED_WORKERS: maybe(process.env.WEB_CONCURRENCY).map(a => +a).valueOr(1),
   DIST_FOLDER: join('.dist', 'wwwroot'),
   MANIFEST,
   MANIFEST_CACHE_CONTROL: 'public, max-age=86400, s-max-age=86400',
