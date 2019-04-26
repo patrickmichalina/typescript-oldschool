@@ -3,6 +3,10 @@ require('workbox-build')
     swDest: '.dist/wwwroot/sw.script.js',
     globDirectory: '.dist/wwwroot',
     globPatterns: ['**\/*.{js,css}'],
+    modifyURLPrefix: {
+      'css/': 'assets/css/',
+      'js/': 'assets/js/'
+    },
     runtimeCaching: [
       {
         urlPattern: /https:\/\/unpkg.com\//,

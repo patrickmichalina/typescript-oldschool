@@ -1,5 +1,5 @@
 import * as glob from 'glob'
-import { minify } from 'uglify-js'
+import { minify } from 'terser'
 import { resolve } from 'path'
 import { readFileSync, writeFileSync } from 'fs'
 
