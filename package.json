@@ -1,5 +1,5 @@
 {
-  "name": "flosports-web",
+  "name": "typescript-oldschool",
   "version": "0.0.0",
   "description": "Production ready Typescript+Express starter",
   "license": "MIT",
@@ -14,6 +14,7 @@
   },
   "scripts": {
     "tsc": "tsc",
+    "test": "npm run test.unit && npm run test.http",
     "test.unit": "nyc mocha --opts ./mocha.opts",
     "test.unit.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
     "test.http": "mocha --opts ./mocha.http.opts",
@@ -102,6 +103,6 @@
     "all": true
   },
   "engines": {
-    "node": "= 11.14.0"
+    "node": "= 12.3.1"
   }
 }

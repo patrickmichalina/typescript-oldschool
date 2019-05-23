@@ -1,1 +1,1 @@
-console.log('SASDASDASDASd!')
+console.log('I am the HOME PAGE SCRIPT')
