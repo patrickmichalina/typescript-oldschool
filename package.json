@@ -13,7 +13,7 @@
     "url": "https://github.com/patrickmichalina"
   },
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc -p tsconfig.json",
     "test": "npm run test.unit && npm run test.http",
     "test.unit": "nyc mocha --opts ./mocha.opts",
     "test.unit.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
@@ -81,7 +81,7 @@
     "source-map-support": "^0.5.12",
     "supertest": "^4.0.2",
     "terser": "^4.0.0",
-    "ts-node": "^8.1.0",
+    "ts-node": "^8.1.1",
     "tslint": "^5.16.0",
     "tslint-immutable": "^5.5.2",
     "typescript": "^3.4.5",
