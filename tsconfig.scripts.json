@@ -20,7 +20,8 @@
       "strict": true,
       "strictNullChecks": true,
       "strictFunctionTypes": true,
-      "forceConsistentCasingInFileNames": true
+      "forceConsistentCasingInFileNames": true,
+      "incremental": true
     },
     "include": [
       "src/**/*.script.ts"
