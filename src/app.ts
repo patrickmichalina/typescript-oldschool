@@ -12,7 +12,7 @@ import * as compression from 'compression'
 
 export const createApplication = () => reader<IConfig, express.Application>(config => {
   const app = express()
-  const basedir = config.DIST_FOLDER
+  const basedir = resolve(config.DIST_FOLDER)
   const addModuleToOurApp = addToEngine(app)
   const staticify = require('staticify')(basedir, { includeAll: true })
   const expressStaticGzip = require('express-static-gzip')
