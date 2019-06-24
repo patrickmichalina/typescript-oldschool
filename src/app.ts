@@ -8,6 +8,7 @@ import { compressedStaticExtensionsMiddleware } from './shared/middleware/compre
 import { readFileSync, readFile } from 'fs'
 import { resolve } from 'path'
 import * as express from 'express'
+import * as compression from 'compression'
 
 export const createApplication = () => reader<IConfig, express.Application>(config => {
   const app = express()
@@ -16,7 +17,6 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   const staticify = require('staticify')(basedir, { includeAll: true })
   const expressStaticGzip = require('express-static-gzip')
   const minifyHTML = require('express-minify-html')
-  const compression = require('compression')
 
   app.disable('x-powered-by')
   app.set('view engine', 'pug')
@@ -29,7 +29,7 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   }
 
   app.use(compressedStaticExtensionsMiddleware)
-  app.get('/manifest.json', (req, res) => {
+  app.get('/manifest.json', (_req, res) => {
     res.setHeader('Cache-Control', config.MANIFEST_CACHE_CONTROL)
     res.json(config.MANIFEST)
     res.end()
