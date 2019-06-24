@@ -84,7 +84,8 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
       collapseBooleanAttributes: true,
       removeAttributeQuotes: true,
       removeEmptyAttributes: true,
-      minifyJS: false
+      minifyJS: true,
+      minifyCSS: true
     }
   }))
 
