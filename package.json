@@ -30,7 +30,7 @@
     "lint": "tsc && tslint --project tsconfig.json --config tslint.json",
     "compress": "ts-node tools/build/compress",
     "uglify": "ts-node tools/build/uglify.ts",
-    "heroku-postbuild": "npm run test && npm run build.prod",
+    "heroku-postbuild": "npm run test.unit && npm run build.prod && npm run test.http",
     "wwwroot": "cpx \"src/wwwroot/**/**\" .dist/wwwroot",
     "wwwroot.watch": "cpx \"src/wwwroot/**/**\" .dist/wwwroot --watch"
   },
