@@ -1,3 +1,5 @@
+include ../components/primary-nav/primary-nav.component.pug
+
 doctype html
 html(lang="en")
   head
@@ -32,4 +34,5 @@ html(lang="en")
   body(vocab="http://schema.org")
     include ./scripts/sw.pug
     .body
+      +primary-nav()
       block content
