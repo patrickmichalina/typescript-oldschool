@@ -62,15 +62,14 @@
     "@types/compression": "0.0.36",
     "@types/express": "^4.17.0",
     "@types/glob": "^7.1.1",
-    "@types/jquery": "^3.3.29",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.0.10",
+    "@types/node": "^12.6.2",
     "@types/pug": "^2.0.4",
-    "@types/supertest": "^2.0.7",
+    "@types/supertest": "^2.0.8",
     "@types/throng": "^4.0.2",
     "chai": "^4.2.0",
     "cpx": "^1.5.0",
-    "cypress": "^3.3.1",
+    "cypress": "^3.4.0",
     "dotenv": "^8.0.0",
     "glob": "^7.1.4",
     "html-validator": "^4.0.3",
@@ -78,14 +77,14 @@
     "most": "^1.7.3",
     "nodemon": "^1.19.1",
     "nyc": "^14.1.1",
-    "sass": "^1.21.0",
+    "sass": "^1.22.4",
     "source-map-support": "^0.5.12",
     "supertest": "^4.0.2",
-    "terser": "^4.0.0",
+    "terser": "^4.1.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.18.0",
-    "tslint-immutable": "^5.5.2",
-    "typescript": "^3.5.2",
+    "tslint-immutable": "^6.0.1",
+    "typescript": "^3.5.3",
     "workbox-build": "4.3.1"
   },
   "nyc": {
@@ -104,6 +103,6 @@
     "all": true
   },
   "engines": {
-    "node": "= 12.4.0"
+    "node": "= 12.6.0"
   }
 }
