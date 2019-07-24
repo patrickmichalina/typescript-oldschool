@@ -16,7 +16,6 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
   const addModuleToOurApp = addToEngine(app)
   const staticify = require('staticify')(basedir, { includeAll: true })
   const expressStaticGzip = require('express-static-gzip')
-  const minifyHTML = require('express-minify-html')
 
   app.disable('x-powered-by')
   app.set('view engine', 'pug')
@@ -72,20 +71,6 @@ export const createApplication = () => reader<IConfig, express.Application>(conf
         inline: {},
         linked: {}
       }
-    }
-  }))
-
-  app.use(minifyHTML({
-    override: true,
-    exception_url: false,
-    htmlMinifier: {
-      removeComments: true,
-      collapseWhitespace: true,
-      collapseBooleanAttributes: true,
-      removeAttributeQuotes: true,
-      removeEmptyAttributes: true,
-      minifyJS: true,
-      minifyCSS: true
     }
   }))
 
