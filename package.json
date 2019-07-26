@@ -18,8 +18,8 @@
     "test.unit": "nyc mocha --opts ./mocha.opts",
     "test.unit.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
     "test.http": "mocha --opts ./mocha.http.opts",
-    "test.e2e.local.gui": "cypress open -- --steps",
-    "test.e2e.local.headless": "cypress run -- --steps",
+    "test.e2e.dev": "node_modules/.bin/cypress open",
+    "test.e2e.ci": "npm run start.prod & wait-on http://localhost:5000 && node_modules/.bin/cypress run",
     "build.scripts": "tsc -p tsconfig.scripts.json",
     "build.scripts.watch": "tsc -p tsconfig.scripts.json -w",
     "build.styles": "mkdir -p .dist/wwwroot && sass src:.dist/wwwroot/css --style=compressed --no-source-map",
@@ -84,6 +84,7 @@
     "tslint": "^5.18.0",
     "tslint-immutable": "^6.0.1",
     "typescript": "^3.5.3",
+    "wait-on": "^3.3.0",
     "workbox-build": "4.3.1"
   },
   "nyc": {
