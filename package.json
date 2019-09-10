@@ -50,19 +50,19 @@
   "dependencies": {
     "compression": "git://github.com/patrickmichalina/compression.git",
     "express": "^4.17.1",
-    "express-static-gzip": "^2.0.3",
+    "express-static-gzip": "^2.0.5",
     "pug": "^2.0.4",
-    "staticify": "^3.3.3",
+    "staticify": "^3.3.4",
     "throng": "^4.0.0",
     "typescript-monads": "^3.13.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.0",
+    "@types/chai": "^4.2.2",
     "@types/compression": "1.0.1",
     "@types/express": "^4.17.1",
     "@types/glob": "^7.1.1",
     "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.2",
+    "@types/node": "^12.7.4",
     "@types/pug": "^2.0.4",
     "@types/supertest": "^2.0.8",
     "@types/throng": "^4.0.2",
@@ -74,16 +74,16 @@
     "html-validator": "^4.1.1",
     "mocha": "^6.2.0",
     "most": "^1.7.3",
-    "nodemon": "^1.19.1",
+    "nodemon": "^1.19.2",
     "nyc": "^14.1.1",
     "sass": "^1.22.10",
     "source-map-support": "^0.5.13",
     "supertest": "^4.0.2",
-    "terser": "^4.2.0",
+    "terser": "^4.3.1",
     "ts-node": "^8.3.0",
-    "tslint": "^5.19.0",
+    "tslint": "^5.20.0",
     "tslint-immutable": "^6.0.1",
-    "typescript": "^3.5.3",
+    "typescript": "^3.6.3",
     "wait-on": "^3.3.0",
     "workbox-build": "4.3.1"
   },
@@ -103,6 +103,6 @@
     "all": true
   },
   "engines": {
-    "node": "= 12.8.0"
+    "node": "= 12.10.0"
   }
 }
