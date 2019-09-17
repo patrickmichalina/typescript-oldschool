@@ -148,3 +148,6 @@ output
 cypress/screenshots
 cypress/videos
 .fusebox
+*.tsbuildinfo
+src/**/*.js
+src/**/*.js.map

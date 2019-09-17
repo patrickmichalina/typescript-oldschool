@@ -35,11 +35,11 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
       )
     }
   }
-  
+
   // app.get('/favicon.ico', expressStaticGzip(publicDir + '/assets', settings))
   // app.get('/manifest.json', expressStaticGzip(publicDir + '/assets', settings))
   app.use('/static', expressStaticGzip(publicDir + '/wwwroot', settings))
-  
+
   app.use(compression())
 
   // page routes
@@ -48,17 +48,17 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   })
 
   // various 404
-  app.use(function(req, res, next){
+  app.use((req, res) => {
     res.status(404)
-  
+
     res.format({
-      html: function () {
-        res.render('404', { url: req.url })
+      html: () => {
+        res.render('shared/404', { url: req.url })
       },
-      json: function () {
+      json: () => {
         res.json({ error: 'Not found' })
       },
-      default: function () {
+      default: () => {
         res.type('txt').send('Not found')
       }
     })
