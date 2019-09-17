@@ -1,108 +1,24 @@
 {
   "name": "typescript-oldschool",
-  "version": "0.0.0",
-  "description": "Production ready Typescript+Express starter",
-  "license": "MIT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/patrickmichalina/typescript-starter"
+    "url": "git+https://github.com/patrickmichalina/typescript-oldschool.git"
   },
-  "author": {
-    "name": "Patrick Michalina",
-    "email": "patrickmichalina@mac.com",
-    "url": "https://github.com/patrickmichalina"
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrickmichalina/typescript-oldschool/issues"
   },
-  "scripts": {
-    "tsc": "tsc -p tsconfig.json",
-    "test": "npm run test.unit && npm run test.http",
-    "test.unit": "nyc mocha --opts ./mocha.opts",
-    "test.unit.watch": "mocha --opts ./mocha.opts -w --watch-extensions ts",
-    "test.http": "mocha --opts ./mocha.http.opts",
-    "test.e2e.dev": "node_modules/.bin/cypress open",
-    "test.e2e.ci": "npm run start.prod & wait-on http://localhost:5000 && node_modules/.bin/cypress run",
-    "build.scripts": "tsc -p tsconfig.scripts.json",
-    "build.scripts.watch": "tsc -p tsconfig.scripts.json -w",
-    "build.styles": "mkdir -p .dist/wwwroot && sass src:.dist/wwwroot/css --style=compressed --no-source-map",
-    "build.styles.watch": "sass src:.dist/wwwroot/css --style=compressed --no-source-map --watch",
-    "build.prod": "npm run build.scripts && npm run wwwroot && npm run build.styles && ts-node tools/build/pwa && npm run uglify && npm run compress && tsc",
-    "start": "rm -rf .dist && npm run wwwroot.watch & npm run build.styles && npm run build.styles.watch & npm run build.scripts.watch & ts-node tools/build/pwa & nodemon || true",
-    "start.prod": "rm -rf .dist && npm run build.prod && NODE_ENV=production node .dist/index",
-    "lint": "tsc && tslint --project tsconfig.json --config tslint.json",
-    "compress": "ts-node tools/build/compress",
-    "uglify": "ts-node tools/build/uglify.ts",
-    "heroku-postbuild": "npm run test.unit && npm run build.prod && npm run test.http",
-    "wwwroot": "cpx \"src/wwwroot/**/**\" .dist/wwwroot",
-    "wwwroot.watch": "cpx \"src/wwwroot/**/**\" .dist/wwwroot --watch"
-  },
-  "nodemonConfig": {
-    "ext": "ts",
-    "exec": "ts-node -r dotenv/config src/index.ts",
-    "watch": [
-      "src"
-    ],
-    "ignore": [
-      "src/**/*.spec-ui.ts",
-      "src/**/*.spec-http.ts",
-      "src/**/*.spec-unit.ts",
-      "src/**/*.script.ts"
-    ]
-  },
-  "dependencies": {
-    "compression": "git://github.com/patrickmichalina/compression.git",
-    "express": "^4.17.1",
-    "express-static-gzip": "^2.0.5",
-    "pug": "^2.0.4",
-    "staticify": "^3.3.4",
-    "throng": "^4.0.0",
-    "typescript-monads": "^3.13.0"
-  },
+  "homepage": "https://github.com/patrickmichalina/typescript-oldschool#readme",
   "devDependencies": {
-    "@types/chai": "^4.2.2",
-    "@types/compression": "1.0.1",
-    "@types/express": "^4.17.1",
-    "@types/glob": "^7.1.1",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.7.5",
-    "@types/pug": "^2.0.4",
-    "@types/supertest": "^2.0.8",
-    "@types/throng": "^4.0.2",
-    "chai": "^4.2.0",
-    "cpx": "^1.5.0",
-    "cypress": "^3.4.1",
-    "dotenv": "^8.1.0",
-    "glob": "^7.1.4",
-    "html-validator": "^4.1.1",
-    "mocha": "^6.2.0",
-    "most": "^1.7.3",
-    "nodemon": "^1.19.2",
-    "nyc": "^14.1.1",
-    "sass": "^1.22.12",
-    "source-map-support": "^0.5.13",
-    "supertest": "^4.0.2",
-    "terser": "^4.3.1",
-    "ts-node": "^8.4.1",
+    "fuse-box": "^4.0.0-next.134",
     "tslint": "^5.20.0",
-    "tslint-immutable": "^6.0.1",
-    "typescript": "^3.6.3",
-    "wait-on": "^3.3.0",
-    "workbox-build": "4.3.1"
-  },
-  "nyc": {
-    "include": [
-      "src/**/*.ts"
-    ],
-    "extension": [
-      ".ts"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "reporter": [
-      "text-summary"
-    ],
-    "all": true
-  },
-  "engines": {
-    "node": "= 12.10.0"
+    "typescript": "^3.6.3"
   }
 }

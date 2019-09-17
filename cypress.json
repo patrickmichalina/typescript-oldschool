@@ -1,5 +1,0 @@
-{
-  "integrationFolder": "src",
-  "testFiles": "**/*.spec-ui.ts",
-  "baseUrl": "http://localhost:5000"
-}
