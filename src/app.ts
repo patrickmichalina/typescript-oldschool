@@ -38,7 +38,8 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
 
   // static assets
   // app.get('/favicon.ico', expressStaticGzip(publicDir + '/assets', settings))
-  // app.get('/manifest.json', expressStaticGzip(publicDir + '/assets', settings))
+  app.get('/sw.js', expressStaticGzip(publicDir + '/wwwroot', settings))
+  app.get('/manifest.json', expressStaticGzip(publicDir + '/wwwroot', settings))
   app.use('/static', expressStaticGzip(publicDir + '/wwwroot', settings))
 
   app.use(compression())

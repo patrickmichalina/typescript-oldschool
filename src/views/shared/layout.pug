@@ -1,9 +1,10 @@
 doctype html
 html(lang="en")
   head
-    script if ("serviceWorker" in navigator) { window.addEventListener("load", function(){ navigator.serviceWorker.register("./static/sw.js")}) }
+    script if ("serviceWorker" in navigator) { window.addEventListener("load", function(){ navigator.serviceWorker.register("./sw.js")}) }
     link(href="./static/css/normalize.css" rel="stylesheet" type="text/css" )
     link(href="./static/css/main.css" rel="stylesheet" type="text/css" )
+    link(rel="manifest" href="/manifest.json")
     script(src="./static/js/thing.js")
     block head
   body.body(vocab="http://schema.org")

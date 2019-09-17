@@ -4,6 +4,7 @@ import { IMaybe, maybe } from 'typescript-monads'
 import { ServerLauncher } from 'fuse-box/user-handler/ServerLauncher'
 import { UserHandler } from 'fuse-box/user-handler/UserHandler'
 import { compressStatic } from './tools/compress'
+import { spawn, ChildProcess } from 'child_process'
 
 const argToBool = (arg: string) => argv[arg] ? true : false
 
@@ -69,7 +70,7 @@ task('assets', ctx => Promise.all([
   exec('assets.copy')
 ]).then((() => exec('pwa.sw'))))
 
-task('build', ctx => ctx.prod ? exec('build.prod') : exec('build.dev'))
+task('build', ctx => exec('tsc').then(() => ctx.prod ? exec('build.prod') : exec('build.dev')))
 task('build.dev', ctx => ctx.fusebox.server.runDev(ctx.fusebox.serveHandler))
 task('build.prod', ctx => exec('assets')
   .then(() => exec('build.prod.server'))
@@ -85,12 +86,46 @@ task('build.prod.server', ctx => ctx.fusebox.server.runProd({
   handler: ctx.fusebox.serveHandler
 }))
 
+task('tsc', ctx => {
+  if (ctx.watch) {
+    new Promise<ChildProcess>((resolve, _reject) => {
+      const child = spawn('node_modules/.bin/tsc', ['-p', 'src/tsconfig.json', '-w'])
+      child.addListener('exit', () => {
+        resolve(child)
+      })
+      child.stderr && child.stderr.on('data', msg => {
+        console.log(msg.toString())
+        resolve(child)
+      })
+      child.addListener('error', err => {
+        console.error(err)
+      })
+    })
+  } else {
+    new Promise((resolve, reject) => {
+      const child = spawn('node_modules/.bin/tsc', ['-p', 'src/tsconfig.json'])
+
+      if (child.stderr) {
+        child.stderr.on('data', err => reject(err.toString()))
+      }
+      child.on('exit', resolve)
+      child.on('error', reject)
+    })
+  }
+})
+
 task('pwa.sw', ctx => {
   require('workbox-build')
     .generateSW({
       swDest: `dist/wwwroot/sw.js`,
       globDirectory: 'dist/wwwroot',
-      globPatterns: ['**\/*.{js,css,ico,png}'],
+      globPatterns: ['**\/*.{js,css,ico,png,json}'],
+      modifyURLPrefix: {
+        'css/': 'static/css/',
+        'js/': 'static/js/',
+        'img/': 'static/img/',
+        'icons/': 'static/icons/'
+      },
       runtimeCaching: [
         {
           urlPattern: /https:\/\/unpkg.com\//,
