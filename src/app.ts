@@ -9,7 +9,7 @@ import { sslRedirect } from './ssl'
 
 export const createExpressApplication = reader<IConfig, express.Application>(config => {
   const app = express()
-  const publicDir = resolve(config.DIST_FOLDER, config.VIEWS_ROOT)
+  const publicDir = resolve(config.DIST_FOLDER)
   const expressStaticGzip = require('express-static-gzip')
   const pino = require('express-pino-logger')
 
@@ -21,7 +21,7 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   app.use(cookies())
   app.disable('x-powered-by')
   app.set('view engine', 'pug')
-  app.set('views', publicDir)
+  app.set('views', resolve(config.DIST_FOLDER, config.VIEWS_ROOT))
 
   const settings = {
     enableBrotli: true,
@@ -38,7 +38,7 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   
   // app.get('/favicon.ico', expressStaticGzip(publicDir + '/assets', settings))
   // app.get('/manifest.json', expressStaticGzip(publicDir + '/assets', settings))
-  app.use('/assets', expressStaticGzip(publicDir + '/assets', settings))
+  app.use('/static', expressStaticGzip(publicDir + '/wwwroot', settings))
 
   app.get('*', compression(),  (req: express.Request, res: express.Response) => {
     res.render('index', { req, res })
