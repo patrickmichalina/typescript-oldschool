@@ -5,12 +5,12 @@ import { reader } from 'typescript-monads'
 import { createExpressApplication } from './app'
 import * as throng from 'throng'
 
-const serverListen = () => () => console.info('oldschool server listening for requests...')
+const serverListen = (cfg: IConfig) => () => console.info(`Server listening for requests on port ${cfg.PORT}.`)
 
 const createApplicationServer =
   (app: Application) =>
     reader<IConfig, Server>(config =>
-      createServer(app).listen(config.PORT, serverListen()))
+      createServer(app).listen(config.PORT, serverListen(config)))
 
 const spawnServer = (config: IConfig) =>
   createExpressApplication
