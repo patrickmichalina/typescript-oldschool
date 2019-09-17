@@ -36,6 +36,7 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
     }
   }
 
+  // static assets
   // app.get('/favicon.ico', expressStaticGzip(publicDir + '/assets', settings))
   // app.get('/manifest.json', expressStaticGzip(publicDir + '/assets', settings))
   app.use('/static', expressStaticGzip(publicDir + '/wwwroot', settings))
@@ -43,9 +44,8 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   app.use(compression())
 
   // page routes
-  app.get('/', (req: express.Request, res: express.Response) => {
-    res.render('home', { req, res })
-  })
+  app.get('/', (req: express.Request, res: express.Response) => res.render('home', { req, res }))
+  app.get('/about', (req: express.Request, res: express.Response) => res.render('about', { req, res }))
 
   // various 404
   app.use((req, res) => {

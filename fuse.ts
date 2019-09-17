@@ -41,7 +41,9 @@ class BuildContext {
         handler.onComplete(complete => {
           this.setServerRef(complete.server)
           if (!this.prod) {
-            complete.server.handleEntry({ nodeArgs: [], scriptArgs: [] })
+            exec('assets').then(() => { // TODO: this might slow things down in huge projects
+              complete.server.handleEntry({ nodeArgs: [], scriptArgs: [] })
+            })
           }
         })
       }
@@ -59,18 +61,18 @@ task('assets.compress', async ctx => {
 })
 
 task('assets.copy', ctx => Promise.all([
-  src('./src/wwwroot/**/*.*').dest('./dist/wwwroot', 'wwwroot').exec(),
+  src('./src/wwwroot/**/*.!(ts)').dest('./dist/wwwroot', 'wwwroot').exec(),
   src('./src/views/**/*.*').dest('./dist/views', 'views').exec(),
 ]))
 
 task('assets', ctx => Promise.all([
-  exec('pwa.sw'),
   exec('assets.copy')
-]))
+]).then((() => exec('pwa.sw'))))
 
-task('build', ctx => exec('assets').then(() => ctx.prod ? exec('build.prod') : exec('build.dev')))
+task('build', ctx => ctx.prod ? exec('build.prod') : exec('build.dev'))
 task('build.dev', ctx => ctx.fusebox.server.runDev(ctx.fusebox.serveHandler))
-task('build.prod', ctx => exec('build.prod.server')
+task('build.prod', ctx => exec('assets')
+  .then(() => exec('build.prod.server'))
   .then(() => exec('assets.compress'))
   .then(() => {
     if (ctx.serve && ctx.prod) {
@@ -86,14 +88,9 @@ task('build.prod.server', ctx => ctx.fusebox.server.runProd({
 task('pwa.sw', ctx => {
   require('workbox-build')
     .generateSW({
-      swDest: 'dist/wwwroot/js/sw.js',
+      swDest: `dist/wwwroot/sw.js`,
       globDirectory: 'dist/wwwroot',
       globPatterns: ['**\/*.{js,css,ico,png}'],
-      modifyURLPrefix: {
-        'css/': 'static/css/',
-        'js/': 'static/js/',
-        'img/': 'static/img/'
-      },
       runtimeCaching: [
         {
           urlPattern: /https:\/\/unpkg.com\//,
