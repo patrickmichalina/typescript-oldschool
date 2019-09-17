@@ -23,7 +23,6 @@ class BuildContext {
     this.setServerRef()
   })
   devServerPort = 4200
-  ngServerPort = 4201
   fusebox = {
     server: fusebox({
       logging: { level: 'disabled' },
@@ -42,8 +41,7 @@ class BuildContext {
         handler.onComplete(complete => {
           this.setServerRef(complete.server)
           if (!this.prod) {
-            const scriptArgs = this.watch ? [`--port=${this.ngServerPort}`] : []
-            complete.server.handleEntry({ nodeArgs: [], scriptArgs })
+            complete.server.handleEntry({ nodeArgs: [], scriptArgs: [] })
           }
         })
       }
@@ -61,7 +59,7 @@ task('assets.compress', async ctx => {
 })
 
 task('assets.copy', ctx => Promise.all([
-  src('./src/assets/**/*.*').dest('./dist/wwwroot/assets', 'assets').exec(),
+  src('./src/wwwroot/**/*.*').dest('./dist/wwwroot', 'wwwroot').exec(),
   src('./src/views/**/*.*').dest('./dist/views', 'views').exec(),
 ]))
 
