@@ -28,11 +28,9 @@
     "strictFunctionTypes": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
+    "noEmit": false,
     "types": [
       "node"
     ]
-  },
-  "include": [
-    "wwwroot/js"
-  ]
+  }
 }

@@ -88,7 +88,7 @@ task('build.prod.server', ctx => ctx.fusebox.server.runProd({
 
 task('tsc', ctx => {
   if (ctx.watch) {
-    new Promise<ChildProcess>((resolve, _reject) => {
+    return new Promise<ChildProcess>((resolve, _reject) => {
       const child = spawn('node_modules/.bin/tsc', ['-p', 'src/tsconfig.json', '-w'])
       child.addListener('exit', () => {
         resolve(child)
@@ -102,8 +102,8 @@ task('tsc', ctx => {
       })
     })
   } else {
-    new Promise((resolve, reject) => {
-      const child = spawn('node_modules/.bin/tsc', ['-p', 'src/tsconfig.json'])
+    const prom1 = new Promise((resolve, reject) => {
+      const child = spawn('node_modules/.bin/tsc', ['-p', 'src/wwwroot/js/tsconfig.json'])
 
       if (child.stderr) {
         child.stderr.on('data', err => reject(err.toString()))
@@ -111,6 +111,18 @@ task('tsc', ctx => {
       child.on('exit', resolve)
       child.on('error', reject)
     })
+
+    const prom2 = new Promise((resolve, reject) => {
+      const child = spawn('node_modules/.bin/tsc', ['-p', 'src/wwwroot/js/tsconfig.json', '-outDir', 'dist/wwwroot/js'])
+
+      if (child.stderr) {
+        child.stderr.on('data', err => reject(err.toString()))
+      }
+      child.on('exit', resolve)
+      child.on('error', reject)
+    })
+
+    return Promise.all([prom1, prom2])
   }
 })
 
