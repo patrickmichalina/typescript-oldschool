@@ -44,23 +44,25 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   // page routes
   app.get('/', (req: express.Request, res: express.Response) => res.render('home', { req, res }))
   app.get('/about', (req: express.Request, res: express.Response) => res.render('about', { req, res }))
+  app.get('/manage', (req: express.Request, res: express.Response) => res.render('manage/nested', { req, res }))
+  app.get('/manage/nested', (req: express.Request, res: express.Response) => res.render('manage/nested', { req, res }))
 
   // various 404
-  // app.use((req, res) => {
-  //   res.status(404)
+  app.use((req, res) => {
+    res.status(404)
 
-  //   res.format({
-  //     html: () => {
-  //       res.render('shared/404', { url: req.url })
-  //     },
-  //     json: () => {
-  //       res.json({ error: 'Not found' })
-  //     },
-  //     default: () => {
-  //       res.type('txt').send('Not found')
-  //     }
-  //   })
-  // })
+    res.format({
+      html: () => {
+        res.render('shared/404', { url: req.url })
+      },
+      json: () => {
+        res.json({ error: 'Not found' })
+      },
+      default: () => {
+        res.type('txt').send('Not found')
+      }
+    })
+  })
 
   return app
 })

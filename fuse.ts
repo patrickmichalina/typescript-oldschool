@@ -121,10 +121,11 @@ task('pwa.sw', ctx => {
       globDirectory: 'dist/wwwroot',
       globPatterns: ['**\/*.{js,css,ico,png,json}'],
       modifyURLPrefix: {
-        'css/': 'static/css/',
-        'js/': 'static/js/',
-        'img/': 'static/img/',
-        'icons/': 'static/icons/'
+        'css/': '/static/css/',
+        'js/': '/static/js/',
+        'img/': '/static/img/',
+        'icons/': '/static/icons/',
+        'manifest.json': '/manifest.json'
       },
       runtimeCaching: [
         {
