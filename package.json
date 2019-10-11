@@ -41,7 +41,7 @@
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "express-static-gzip": "^2.0.5",
-    "fuse-box": "^4.0.0-alpha.218",
+    "fuse-box": "4.0.0-next.141",
     "husky": "^3.0.8",
     "pino": "^5.13.4",
     "pino-pretty": "^3.2.2",
