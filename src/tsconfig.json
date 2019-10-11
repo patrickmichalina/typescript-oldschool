@@ -16,7 +16,6 @@
     "noLib": false,
     "noUnusedLocals": true,
     "noEmitOnError": true,
-    "noEmit": true,
     "noEmitHelpers": false,
     "allowSyntheticDefaultImports": false,
     "sourceMap": true,
@@ -31,15 +30,9 @@
     "incremental": true,
     "types": [
       "node"
-    ],
-    "typeRoots": [
-      "node_modules/@types"
     ]
   },
   "include": [
-    "tools"
-  ],
-  "files": [
-    "fuse.ts"
+    "wwwroot/js"
   ]
 }

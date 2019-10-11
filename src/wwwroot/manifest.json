@@ -1,0 +1,8 @@
+{
+  "short_name": "TS Oldschool",
+  "name": "Typescript Oldschool",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#007acd",
+  "theme_color": "#007acd"
+}

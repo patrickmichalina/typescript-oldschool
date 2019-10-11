@@ -1,83 +1,69 @@
-import { homeModule } from './home/home.module'
-import { aboutModule } from './about/about.module'
-import { addToEngine } from './shared/util/add-to-engine'
-import { localsMiddleware } from './shared/middleware/locals'
+import * as express from 'express'
+import * as cookies from 'cookie-parser'
+import * as compression from 'compression'
+import { json, urlencoded } from 'body-parser'
 import { reader } from 'typescript-monads'
 import { IConfig } from './config'
-import { compressedStaticExtensionsMiddleware } from './shared/middleware/compressed-statics'
-import { readFileSync, readFile } from 'fs'
 import { resolve } from 'path'
-import * as express from 'express'
-import * as compression from 'compression'
+import { sslRedirect } from './ssl'
 
-export const createApplication = () => reader<IConfig, express.Application>(config => {
+export const createExpressApplication = reader<IConfig, express.Application>(config => {
   const app = express()
-  const basedir = resolve(config.DIST_FOLDER)
-  const addModuleToOurApp = addToEngine(app)
-  const staticify = require('staticify')(basedir, { includeAll: true })
+  const publicDir = resolve(config.DIST_FOLDER)
   const expressStaticGzip = require('express-static-gzip')
+  const pino = require('express-pino-logger')
 
+  if (config.HTTP_LOGS_ENABLED) app.use(pino())
+
+  app.use(sslRedirect)
+  app.use(urlencoded({ extended: true }))
+  app.use(json())
+  app.use(cookies())
   app.disable('x-powered-by')
   app.set('view engine', 'pug')
-  app.set('views', 'src')
+  app.set('views', resolve(config.DIST_FOLDER, config.VIEWS_ROOT))
 
-  const staticCompSettings = {
+  const settings = {
     enableBrotli: true,
+    fallthrough: false,
     orderPreference: ['br', 'gzip'] as ReadonlyArray<string>,
-    maxAge: config.NODE_DEBUG ? '0' : '7d'
+    setHeaders: (res: express.Response, _reqUrl: string) => {
+      res.setHeader('Cache-Control',
+        config.NODE_DEBUG
+          ? 'no-store'
+          : `public, max-age=31536000, s-maxage=31536000`
+      )
+    }
   }
 
-  app.use(compressedStaticExtensionsMiddleware)
-  app.get('/manifest.json', (_req, res) => {
-    res.setHeader('Cache-Control', config.MANIFEST_CACHE_CONTROL)
-    res.json(config.MANIFEST)
-    res.end()
-  })
-  app.use('/favicon.ico', (_, res) => {
-    readFile(resolve(basedir, 'img/favicon.ico'), (err, buffer) => {
-      // tslint:disable-next-line:no-if-statement
-      if (err) {
-        res.sendStatus(404)
-        res.end()
-      } else {
-        res.setHeader('Content-Type', 'image/x-icon')
-        res.setHeader('Content-Length', buffer.length)
-        res.write(buffer)
-        res.end()
-      }
-    })
-  })
-  app.use('/sw.js', expressStaticGzip(basedir, staticCompSettings))
-  app.use('/assets', expressStaticGzip(basedir, staticCompSettings))
-  app.use(staticify.middleware)
-  app.use(localsMiddleware({
-    global: {
-      appVersion: config.APP_VERSION,
-      basedir,
-      static: staticify.getVersionedPath,
-      loaderConfig: config.EXTERANL_JS_DEPEPENDENCIES,
-      manifest: config.MANIFEST,
-      metaElements: [{
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1.0'
-      }] as ReadonlyArray<any>,
-      styles: {
-        inline: {
-          core: readFileSync('.dist/wwwroot/css/shared/styles/global.style.css', 'utf-8')
-        },
-        linked: {}
-      },
-      scripts: {
-        inline: {},
-        linked: {}
-      }
-    }
-  }))
+  // static assets
+  // app.get('/favicon.ico', expressStaticGzip(publicDir + '/assets', settings))
+  app.get('/sw.js', expressStaticGzip(publicDir + '/wwwroot', settings))
+  app.get('/manifest.json', expressStaticGzip(publicDir + '/wwwroot', settings))
+  app.use('/static', expressStaticGzip(publicDir + '/wwwroot', settings))
 
   app.use(compression())
 
-  addModuleToOurApp(homeModule)
-  addModuleToOurApp(aboutModule)
+  // page routes
+  app.get('/', (req: express.Request, res: express.Response) => res.render('home', { req, res }))
+  app.get('/about', (req: express.Request, res: express.Response) => res.render('about', { req, res }))
+
+  // various 404
+  app.use((req, res) => {
+    res.status(404)
+
+    res.format({
+      html: () => {
+        res.render('shared/404', { url: req.url })
+      },
+      json: () => {
+        res.json({ error: 'Not found' })
+      },
+      default: () => {
+        res.type('txt').send('Not found')
+      }
+    })
+  })
 
   return app
 })
