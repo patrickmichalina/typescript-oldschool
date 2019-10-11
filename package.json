@@ -23,6 +23,11 @@
   "engines": {
     "node": "= 12.11.1"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "devDependencies": {
     "@types/compression": "^1.0.1",
     "@types/cookie-parser": "^1.4.2",
@@ -37,6 +42,7 @@
     "express-pino-logger": "^4.0.0",
     "express-static-gzip": "^2.0.5",
     "fuse-box": "^4.0.0-alpha.218",
+    "husky": "^3.0.8",
     "pino": "^5.13.4",
     "pino-pretty": "^3.2.2",
     "ts-node": "^8.4.1",
