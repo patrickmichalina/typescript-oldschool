@@ -17,15 +17,18 @@ export interface IConfig {
 }
 
 const NODE_DEBUG = maybe(process.env.NODE_ENV).filter(a => a === 'production').isNone()
+const DIST_FOLDER = resolve('dist')
+const WWW_ROOT = resolve(DIST_FOLDER, 'wwwroot')
+const VIEWS_ROOT = resolve(DIST_FOLDER, 'views')
 
 export const STANDARD_CONFIG: IConfig = {
-  NODE_DEBUG,
   HTTP_LOGS_ENABLED: maybe(process.env.HTTP_LOGS_DISABLED).filter(Boolean).isNone(),
   PORT: maybe(argv['port'] as string | undefined)
     .match({ some: maybe, none: () => maybe(process.env.PORT) })
     .map(p => +p).valueOr(4200),
   CLUSTERED_WORKERS: maybe(process.env.WEB_CONCURRENCY).map(a => +a).valueOr(1),
-  DIST_FOLDER: resolve('dist'),
-  WWW_ROOT: 'wwwroot',
-  VIEWS_ROOT: 'views'
+  NODE_DEBUG,
+  DIST_FOLDER,
+  WWW_ROOT,
+  VIEWS_ROOT
 }

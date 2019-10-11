@@ -4,12 +4,11 @@ import * as compression from 'compression'
 import { json, urlencoded } from 'body-parser'
 import { reader } from 'typescript-monads'
 import { IConfig } from './config'
-import { resolve } from 'path'
 import { sslRedirect } from './ssl'
 
 export const createExpressApplication = reader<IConfig, express.Application>(config => {
   const app = express()
-  const publicDir = resolve(config.DIST_FOLDER)
+  const publicDir = config.DIST_FOLDER
   const expressStaticGzip = require('express-static-gzip')
   const pino = require('express-pino-logger')
 
@@ -21,11 +20,10 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   app.use(cookies())
   app.disable('x-powered-by')
   app.set('view engine', 'pug')
-  app.set('views', resolve(config.DIST_FOLDER, config.VIEWS_ROOT))
+  app.set('views', config.VIEWS_ROOT)
 
   const settings = {
     enableBrotli: true,
-    fallthrough: false,
     orderPreference: ['br', 'gzip'] as ReadonlyArray<string>,
     setHeaders: (res: express.Response, _reqUrl: string) => {
       res.setHeader('Cache-Control',
