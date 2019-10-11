@@ -8,7 +8,6 @@ import { sslRedirect } from './ssl'
 
 export const createExpressApplication = reader<IConfig, express.Application>(config => {
   const app = express()
-  const publicDir = config.DIST_FOLDER
   const expressStaticGzip = require('express-static-gzip')
   const pino = require('express-pino-logger')
 
@@ -35,10 +34,10 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   }
 
   // static assets
-  // app.get('/favicon.ico', expressStaticGzip(publicDir + '/assets', settings))
-  app.get('/sw.js', expressStaticGzip(publicDir + '/wwwroot', settings))
-  app.get('/manifest.json', expressStaticGzip(publicDir + '/wwwroot', settings))
-  app.use('/static', expressStaticGzip(publicDir + '/wwwroot', settings))
+  // app.get('/favicon.ico', expressStaticGzip(config.WWW_ROOT, settings))
+  app.get('/sw.js', expressStaticGzip(config.WWW_ROOT, settings))
+  app.get('/manifest.json', expressStaticGzip(config.WWW_ROOT, settings))
+  app.use('/static', expressStaticGzip(config.WWW_ROOT, settings))
 
   app.use(compression())
 
