@@ -1,6 +1,7 @@
 import * as express from 'express'
 import * as cookies from 'cookie-parser'
 import * as compression from 'compression'
+import * as helmet from 'helmet'
 import { json, urlencoded } from 'body-parser'
 import { reader } from 'typescript-monads'
 import { IConfig } from './config'
@@ -14,6 +15,15 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   if (config.HTTP_LOGS_ENABLED) app.use(pino())
 
   app.use(sslRedirect)
+  app.use(helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ['\'self\''],
+        scriptSrc: ['\'self\'', '\'sha256-rA6tmREaxmkwS9vLQ1xoyhS1EhdVdYXxc1kYD6+9vEU=\''],
+        styleSrc: ['\'self\'']
+      }
+    }
+  }))
   app.use(urlencoded({ extended: true }))
   app.use(json())
   app.use(cookies())
