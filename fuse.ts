@@ -31,7 +31,7 @@ class BuildContext {
       target: 'server',
       entry: 'src/server.ts',
       devServer: false,
-      useSingleBundle: true,
+      useSingleBundle: this.prod,
       dependencies: this.prod
         ? { ignorePackages: ['throng'], ignoreAllExternal: false }
         : {}

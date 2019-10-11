@@ -7,14 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "ts-node -r dotenv/config fuse --prod --verbose",
     "start": "ts-node -r dotenv/config fuse --watch --serve",
-    "start.prod": "ts-node -r dotenv/config fuse --watch --serve --prod"
+    "start.prod": "ts-node -r dotenv/config fuse --prod --watch --serve"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/patrickmichalina/typescript-oldschool.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/patrickmichalina/typescript-oldschool/issues"
   },
@@ -35,7 +35,7 @@
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "express-static-gzip": "^2.0.5",
-    "fuse-box": "^4.0.0-next.139",
+    "fuse-box": "^4.0.0-alpha.218",
     "pino": "^5.13.4",
     "pino-pretty": "^3.2.2",
     "ts-node": "^8.4.1",
