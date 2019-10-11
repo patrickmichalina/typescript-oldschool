@@ -20,14 +20,14 @@
   },
   "homepage": "https://github.com/patrickmichalina/typescript-oldschool#readme",
   "engines": {
-    "node": "= 12.10.0"
+    "node": "= 12.11.1"
   },
   "devDependencies": {
     "@types/compression": "^1.0.1",
     "@types/cookie-parser": "^1.4.2",
     "@types/express": "^4.17.1",
     "@types/throng": "^4.0.2",
-    "@types/yargs": "^13.0.2",
+    "@types/yargs": "^13.0.3",
     "body-parser": "^1.19.0",
     "compression": "git://github.com/patrickmichalina/compression.git",
     "cookie-parser": "^1.4.4",
@@ -36,14 +36,14 @@
     "express-pino-logger": "^4.0.0",
     "express-static-gzip": "^2.0.5",
     "fuse-box": "^4.0.0-next.139",
-    "pino": "^5.13.3",
-    "pino-pretty": "^3.2.1",
+    "pino": "^5.13.4",
+    "pino-pretty": "^3.2.2",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.3",
+    "typescript": "^3.6.4",
     "typescript-monads": "^3.13.0",
     "workbox-build": "^4.3.1",
-    "yargs": "^14.0.0"
+    "yargs": "^14.2.0"
   },
   "dependencies": {
     "pug": "^2.0.4",
