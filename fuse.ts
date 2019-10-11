@@ -9,22 +9,22 @@ import { spawn, ChildProcess } from 'child_process'
 const argToBool = (arg: string) => argv[arg] ? true : false
 
 class BuildContext {
-  minify = argToBool('minify')
-  lint = argToBool('lint')
-  prod = argToBool('prod')
-  serve = argToBool('serve')
-  watch = argToBool('watch')
-  pwa = argToBool('pwa')
+  readonly minify = argToBool('minify')
+  readonly lint = argToBool('lint')
+  readonly prod = argToBool('prod')
+  readonly serve = argToBool('serve')
+  readonly watch = argToBool('watch')
+  readonly pwa = argToBool('pwa')
   serverRef: IMaybe<ServerLauncher> = maybe()
   setServerRef(val?: ServerLauncher) {
     this.serverRef = maybe(val)
   }
-  killServer = () => this.serverRef.tapSome(ref => {
+  readonly killServer = () => this.serverRef.tapSome(ref => {
     ref.kill()
     this.setServerRef()
   })
-  devServerPort = 4200
-  fusebox = {
+  readonly devServerPort = 4200
+  readonly fusebox = {
     server: fusebox({
       logging: { level: 'disabled' },
       cache: { enabled: true, FTL: true, root: '.fusebox' },

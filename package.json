@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "ts-node -r dotenv/config fuse --prod --verbose",
     "start": "ts-node -r dotenv/config fuse --watch --serve",
-    "start.prod": "ts-node -r dotenv/config fuse --prod --watch --serve"
+    "start.prod": "ts-node -r dotenv/config fuse --prod --watch --serve",
+    "lint": "tslint -p tsconfig.json & tslint -p src/wwwroot/js/tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "pino-pretty": "^3.2.2",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
+    "tslint-immutable": "^6.0.1",
     "typescript": "^3.6.4",
     "typescript-monads": "^3.13.0",
     "workbox-build": "^4.3.1",
