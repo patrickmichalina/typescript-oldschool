@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/patrickmichalina/typescript-oldschool#readme",
   "engines": {
-    "node": "= 12.11.1"
+    "node": "= 12.13.0"
   },
   "husky": {
     "hooks": {
@@ -38,14 +38,14 @@
     "body-parser": "^1.19.0",
     "compression": "git://github.com/patrickmichalina/compression.git",
     "cookie-parser": "^1.4.4",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "express-static-gzip": "^2.0.5",
     "fuse-box": "4.0.0-next.141",
     "helmet": "^3.21.1",
-    "husky": "^3.0.8",
-    "pino": "^5.13.4",
+    "husky": "^3.0.9",
+    "pino": "^5.13.5",
     "pino-pretty": "^3.2.2",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
