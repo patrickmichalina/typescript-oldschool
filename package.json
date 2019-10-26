@@ -42,8 +42,7 @@
     "express": "^4.17.1",
     "express-pino-logger": "^4.0.0",
     "express-static-gzip": "^2.0.5",
-    "fuse-box": "4.0.0-next.141",
-    "helmet": "^3.21.2",
+    "fuse-box": "4.0.0-next.142",
     "husky": "^3.0.9",
     "pino": "^5.13.5",
     "pino-pretty": "^3.2.2",
@@ -56,6 +55,7 @@
     "yargs": "^14.2.0"
   },
   "dependencies": {
+    "helmet": "^3.21.2",
     "pug": "^2.0.4",
     "source-map-support": "^0.5.13",
     "throng": "^4.0.0"

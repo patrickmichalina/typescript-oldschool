@@ -33,7 +33,7 @@ class BuildContext {
       devServer: false,
       useSingleBundle: this.prod,
       dependencies: this.prod
-        ? { ignorePackages: ['throng'], ignoreAllExternal: false }
+        ? { ignorePackages: ['throng', 'helmet'], ignoreAllExternal: false }
         : {}
     }),
     serveHandler: (handler: UserHandler) => {
