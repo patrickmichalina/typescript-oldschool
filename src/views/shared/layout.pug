@@ -5,7 +5,7 @@ html(lang="en")
     link(href="/static/css/main.css" rel="stylesheet" type="text/css" )
     link(rel="manifest" href="/manifest.json")
     script(src="/static/js/test-script.js" type="text/javascript")
-    script if ("serviceWorker" in navigator) { window.addEventListener("load", function(){ navigator.serviceWorker.register("/sw.js")}) }
+    //- script if ("serviceWorker" in navigator) { window.addEventListener("load", function(){ navigator.serviceWorker.register("/sw.js")}) }
     block head
   body.body(vocab="http://schema.org")
     include nav.pug

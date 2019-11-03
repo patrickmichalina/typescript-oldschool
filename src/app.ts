@@ -9,8 +9,8 @@ import { sslRedirect } from './ssl'
 
 export const createExpressApplication = reader<IConfig, express.Application>(config => {
   const app = express()
-  const expressStaticGzip = require('express-static-gzip')
   const pino = require('express-pino-logger')
+  const expressStaticGzip = require('express-static-gzip')
 
   if (config.HTTP_LOGS_ENABLED) app.use(pino())
 
@@ -18,9 +18,7 @@ export const createExpressApplication = reader<IConfig, express.Application>(con
   app.use(helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ['\'self\''],
-        scriptSrc: ['\'self\'', '\'sha256-rA6tmREaxmkwS9vLQ1xoyhS1EhdVdYXxc1kYD6+9vEU=\''],
-        styleSrc: ['\'self\'']
+        defaultSrc: ['\'self\'']
       }
     }
   }))

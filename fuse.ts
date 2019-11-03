@@ -31,6 +31,7 @@ class BuildContext {
       target: 'server',
       entry: 'src/server.ts',
       devServer: false,
+      hmr: false,
       useSingleBundle: this.prod,
       dependencies: this.prod
         ? { ignorePackages: ['throng', 'helmet'], ignoreAllExternal: false }
@@ -68,7 +69,7 @@ task('assets.copy', ctx => Promise.all([
 
 task('assets', ctx => Promise.all([
   exec('assets.copy')
-]).then((() => exec('pwa.sw'))))
+]).then((() => ctx.pwa ? exec('pwa.sw') : Promise.resolve())))
 
 task('build', ctx => exec('tsc').then(() => ctx.prod ? exec('build.prod') : exec('build.dev')))
 task('build.dev', ctx => ctx.fusebox.server.runDev(ctx.fusebox.serveHandler))
